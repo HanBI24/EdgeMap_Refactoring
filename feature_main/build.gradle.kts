@@ -40,8 +40,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":ui"))
-
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.compose.material:material:1.1.1")
     testImplementation("junit:junit:4.13.2")
