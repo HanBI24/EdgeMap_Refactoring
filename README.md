@@ -10,3 +10,10 @@
 * buildSrc
 * Coroutine
 * Flow, StateFlow, SharedFlow
+* Hilt
+* Retrofit
+* Kotlinx Serialization
+* Room
+* Coil
+* Naver API (Map, Direction 5, GeoCoding, Reverse GeoCoding, Search)
+* Duru API
