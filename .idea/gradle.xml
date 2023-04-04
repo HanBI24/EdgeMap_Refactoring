@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature_bottom_info" />
             <option value="$PROJECT_DIR$/feature_favorite" />
             <option value="$PROJECT_DIR$/feature_main" />
