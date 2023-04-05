@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -5,14 +7,17 @@ plugins {
 
 android {
     namespace = "com.example.feature_main"
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+//        buildConfigField("String", "ClientID", getApiKey("ClientID"))
+//        buildConfigField("String", "ClientSecret", getApiKey("ClientSecret"))
     }
 
     buildTypes {
@@ -51,7 +56,15 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.1.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
 
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.1")
+//    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
+//    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+//    debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.1")
+
+    implementation("io.github.fornewid:naver-map-compose:1.2.3")
+    implementation("com.naver.maps:map-sdk:3.16.1")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+}
+
+fun getApiKey(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
 }

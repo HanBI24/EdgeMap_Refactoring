@@ -18,6 +18,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField("String", "Client_ID", Client_ID)
+        buildConfigField("String", "Client_Secret", Client_Secret)
     }
 
     buildTypes {
@@ -61,4 +64,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    implementation("io.github.fornewid:naver-map-compose:1.2.3")
+    implementation("com.naver.maps:map-sdk:3.16.1")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }

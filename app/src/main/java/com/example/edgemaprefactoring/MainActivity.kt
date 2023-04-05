@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import com.example.edgemaprefactoring.ui.theme.EdgeMapRefactoringTheme
 import com.example.feature_main.MainScreen
+import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import kotlinx.coroutines.MainScope
 
+@ExperimentalNaverMapApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
