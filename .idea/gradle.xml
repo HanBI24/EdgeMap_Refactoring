@@ -18,6 +18,9 @@
             <option value="$PROJECT_DIR$/feature_favorite" />
             <option value="$PROJECT_DIR$/feature_main" />
             <option value="$PROJECT_DIR$/feature_search" />
+            <option value="$PROJECT_DIR$/feature_search/data" />
+            <option value="$PROJECT_DIR$/feature_search/domain" />
+            <option value="$PROJECT_DIR$/feature_search/presentation" />
             <option value="$PROJECT_DIR$/feature_search_result" />
           </set>
         </option>

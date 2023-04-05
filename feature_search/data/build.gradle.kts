@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.feature_search"
-    compileSdk = 33
+    namespace = "com.example.data"
+    compileSdk = 32
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 32
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,10 +34,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(project(":common"))
-    implementation(project(":feature_search:presentation"))
     implementation(project(":feature_search:domain"))
-    implementation(project(":feature_search:data"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

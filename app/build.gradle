@@ -67,8 +67,11 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
+    // naver map to compose
     implementation("io.github.fornewid:naver-map-compose:1.2.3")
+    // naver map SDK
     implementation("com.naver.maps:map-sdk:3.16.1")
+    // fused location
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // Dagger - Hilt
