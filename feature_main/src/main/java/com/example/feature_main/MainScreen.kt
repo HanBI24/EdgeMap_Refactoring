@@ -14,7 +14,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         NaverMap(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
 
         }
