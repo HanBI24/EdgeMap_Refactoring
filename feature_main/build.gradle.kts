@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":feature_search"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     testImplementation("junit:junit:4.13.2")
