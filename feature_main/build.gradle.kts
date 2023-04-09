@@ -67,6 +67,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     implementation("com.google.accompanist:accompanist-permissions:0.31.0-alpha")
+
+    implementation("androidx.navigation:navigation-compose:2.6.0-alpha08")
 }
 
 fun getApiKey(propertyKey: String): String {
