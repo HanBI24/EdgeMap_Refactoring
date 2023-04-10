@@ -1,4 +1,4 @@
-package com.example.feature_main.navigation
+package com.example.edgemaprefactoring.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.feature_favorite.FavoriteScreen
 import com.example.feature_main.MainScreen
+import com.example.feature_main.navigation.BottomNavScreen
 import com.example.feature_search.SearchScreen
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 

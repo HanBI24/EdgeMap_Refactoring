@@ -53,6 +53,8 @@ android {
 
 dependencies {
     implementation(project(":feature_main"))
+    implementation(project(":feature_search"))
+    implementation(project(":feature_favorite"))
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
