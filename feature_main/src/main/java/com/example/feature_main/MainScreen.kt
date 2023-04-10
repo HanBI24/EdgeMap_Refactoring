@@ -21,20 +21,20 @@ import com.naver.maps.map.compose.*
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
-        Box(
-            modifier = modifier.fillMaxSize()
-        ) {
-            val cameraPositionState = rememberCameraPositionState()
-            NaverMap(
-                modifier = Modifier.fillMaxSize(),
-                cameraPositionState = cameraPositionState,
-                locationSource = rememberFusedLocationSource(),
-                properties = MapProperties(
-                    locationTrackingMode = LocationTrackingMode.Follow
-                ),
-                uiSettings = MapUiSettings(
-                    isLocationButtonEnabled = true,
-                ),
-            )
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        val cameraPositionState = rememberCameraPositionState()
+        NaverMap(
+            modifier = Modifier.fillMaxSize(),
+            cameraPositionState = cameraPositionState,
+            locationSource = rememberFusedLocationSource(),
+            properties = MapProperties(
+                locationTrackingMode = LocationTrackingMode.Follow
+            ),
+            uiSettings = MapUiSettings(
+                isLocationButtonEnabled = true,
+            ),
+        )
     }
 }
