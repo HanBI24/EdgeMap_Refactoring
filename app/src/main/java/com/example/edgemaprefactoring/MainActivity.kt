@@ -43,7 +43,9 @@ fun StartScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
     Scaffold(
-        bottomBar = { BottomNavBar(navController = navController) }
+        bottomBar = {
+            BottomNavBar(navController = navController)
+        }
     ) { padding ->
         Box(
             modifier = modifier.padding(padding).fillMaxSize()
