@@ -18,24 +18,12 @@ import androidx.compose.ui.unit.dp
 import com.example.common.location.rememberFusedLocationSource
 import com.naver.maps.map.compose.*
 
-@ExperimentalNaverMapApi
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
     ) {
-        val cameraPositionState = rememberCameraPositionState()
-        NaverMap(
-            modifier = Modifier.fillMaxSize(),
-            cameraPositionState = cameraPositionState,
-            locationSource = rememberFusedLocationSource(),
-            properties = MapProperties(
-                locationTrackingMode = LocationTrackingMode.Follow
-            ),
-            uiSettings = MapUiSettings(
-                isLocationButtonEnabled = true,
-            ),
-        )
+        NaverMapView(modifier = Modifier.fillMaxSize())
 
         BottomButtonView(
             modifier = Modifier
@@ -46,6 +34,24 @@ fun MainScreen(modifier: Modifier = Modifier) {
         )
 
     }
+}
+
+@OptIn(ExperimentalNaverMapApi::class)
+@Composable
+fun NaverMapView(modifier: Modifier = Modifier) {
+    val cameraPositionState = rememberCameraPositionState()
+
+    NaverMap(
+        modifier = modifier,
+        cameraPositionState = cameraPositionState,
+        locationSource = rememberFusedLocationSource(),
+        properties = MapProperties(
+            locationTrackingMode = LocationTrackingMode.Follow
+        ),
+        uiSettings = MapUiSettings(
+            isLocationButtonEnabled = true,
+        ),
+    )
 }
 
 @Composable
