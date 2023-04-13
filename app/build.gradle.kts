@@ -57,7 +57,7 @@ android {
 }
 
 dependencies {
-    // project
+    // module
     implementation(project(":feature_main"))
     implementation(project(":feature_search"))
     implementation(project(":feature_favorite"))

@@ -21,6 +21,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.edgemaprefactoring.ui.theme.EdgeMapRefactoringTheme
 import com.example.edgemaprefactoring.navigation.BottomNavGraph
+import com.example.feature_main.MainScreen
 import com.example.feature_main.navigation.BottomNavScreen
 import com.naver.maps.map.compose.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EdgeMapRefactoringTheme {
-                StartScreen()
+//                StartScreen()
+                MainScreen(modifier = Modifier.fillMaxSize())
             }
         }
     }
