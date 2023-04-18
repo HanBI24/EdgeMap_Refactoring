@@ -15,11 +15,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.common.location.rememberFusedLocationSource
 import com.naver.maps.map.compose.*
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     Box(
         modifier = modifier
     ) {

@@ -32,78 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EdgeMapRefactoringTheme {
-//                StartScreen()
+
             }
         }
     }
-}
-
-@Composable
-fun StartScreen(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-
-    Scaffold(
-        bottomBar = {
-            BottomNavBar(navController = navController)
-        }
-    ) { padding ->
-        Box(
-            modifier = modifier.padding(padding).fillMaxSize()
-        )
-        BottomNavGraph(navController = navController)
-    }
-}
-
-@Composable
-fun BottomNavBar(navController: NavHostController) {
-    val screens = listOf(
-        BottomNavScreen.Home,
-        BottomNavScreen.Search,
-        BottomNavScreen.Favorite
-    )
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-    BottomNavigation(
-        elevation = 15.dp,
-        modifier = Modifier.padding(20.dp).clip(RoundedCornerShape(20.dp))
-    ) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
-            )
-        }
-    }
-}
-
-@Composable
-fun RowScope.AddItem(
-    screen: BottomNavScreen,
-    currentDestination: NavDestination?,
-    navController: NavHostController
-) {
-    BottomNavigationItem(
-        label = {
-            Text(text = screen.title)
-        },
-        icon = {
-            Icon(
-                imageVector = screen.icon,
-                contentDescription = "Navigation Icon"
-            )
-        },
-        selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } == true,
-        onClick = {
-            navController.popBackStack(
-                navController.graph.startDestinationId,
-                false
-            )
-            if(currentDestination?.route != screen.route)
-                navController.navigate(screen.route)
-        }
-    )
 }

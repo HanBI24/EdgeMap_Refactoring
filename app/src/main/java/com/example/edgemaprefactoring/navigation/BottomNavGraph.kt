@@ -9,7 +9,6 @@ import com.example.feature_main.MainScreen
 import com.example.feature_search.SearchScreen
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 
-@OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun BottomNavGraph(navController: NavHostController) {
     NavHost(
