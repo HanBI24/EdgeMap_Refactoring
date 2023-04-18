@@ -85,7 +85,12 @@ fun BottomButton(
     bottomButtonEntry: Map.Entry<String, ImageVector>
 ) {
     OutlinedButton(
-        onClick = {},
+        onClick = {
+            when (bottomButtonEntry.key) {
+                "목적지 검색" -> {}
+                "즐겨찾기" -> {}
+            }
+        },
         modifier = modifier,
         border = BorderStroke(0.dp, Color.Transparent),
         colors = ButtonDefaults

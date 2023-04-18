@@ -1,4 +1,4 @@
-package com.example.feature_main.navigation
+package com.example.edgemaprefactoring.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
