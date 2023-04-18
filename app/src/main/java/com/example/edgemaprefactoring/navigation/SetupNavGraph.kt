@@ -7,16 +7,15 @@ import androidx.navigation.compose.composable
 import com.example.feature_favorite.FavoriteScreen
 import com.example.feature_main.MainScreen
 import com.example.feature_search.SearchScreen
-import com.naver.maps.map.compose.ExperimentalNaverMapApi
 
 @Composable
-fun BottomNavGraph(navController: NavHostController) {
+fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = BottomNavScreen.Home.route
     ) {
         composable(route = BottomNavScreen.Home.route) {
-            MainScreen()
+            MainScreen(navController = navController)
         }
         composable(route = BottomNavScreen.Search.route) {
             SearchScreen()

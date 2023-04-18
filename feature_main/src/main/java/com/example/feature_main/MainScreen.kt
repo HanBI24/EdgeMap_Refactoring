@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.common.location.rememberFusedLocationSource
+import com.example.edgemaprefactoring.navigation.BottomNavScreen
 import com.naver.maps.map.compose.*
 
 @Composable
@@ -34,7 +35,8 @@ fun MainScreen(
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .padding(20.dp)
-                .clip(shape = RoundedCornerShape(12.dp))
+                .clip(shape = RoundedCornerShape(12.dp)),
+            navController = navController
         )
 
     }
@@ -59,7 +61,10 @@ fun NaverMapView(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun BottomButtonView(modifier: Modifier = Modifier) {
+fun BottomButtonView(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     val bottomButtonTitleList = mapOf(
         "목적지 검색" to Icons.Default.Search,
         "즐겨찾기" to Icons.Default.Favorite
@@ -76,7 +81,8 @@ fun BottomButtonView(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(0.5f),
-                    entry
+                    entry,
+                    navController = navController
                 )
             }
         }
@@ -86,13 +92,14 @@ fun BottomButtonView(modifier: Modifier = Modifier) {
 @Composable
 fun BottomButton(
     modifier: Modifier = Modifier,
-    bottomButtonEntry: Map.Entry<String, ImageVector>
+    bottomButtonEntry: Map.Entry<String, ImageVector>,
+    navController: NavHostController
 ) {
     OutlinedButton(
         onClick = {
             when (bottomButtonEntry.key) {
-                "목적지 검색" -> {}
-                "즐겨찾기" -> {}
+                "목적지 검색" -> { navController.navigate(route = BottomNavScreen.Search.route) }
+                "즐겨찾기" -> { navController.navigate(route = BottomNavScreen.Favorite.route) }
             }
         },
         modifier = modifier,
