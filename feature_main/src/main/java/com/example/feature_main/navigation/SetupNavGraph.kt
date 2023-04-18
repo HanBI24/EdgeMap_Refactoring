@@ -1,4 +1,4 @@
-package com.example.edgemaprefactoring.navigation
+package com.example.feature_main.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

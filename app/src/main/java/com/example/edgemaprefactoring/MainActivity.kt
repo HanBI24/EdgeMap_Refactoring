@@ -5,8 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.edgemaprefactoring.navigation.SetupNavGraph
+import com.example.feature_main.navigation.SetupNavGraph
 import com.example.edgemaprefactoring.ui.theme.EdgeMapRefactoringTheme
+import com.example.feature_main.MainScreenSetNavigation
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             EdgeMapRefactoringTheme {
                 navController = rememberNavController()
-                SetupNavGraph(navController = navController)
+                MainScreenSetNavigation(navController)
             }
         }
     }

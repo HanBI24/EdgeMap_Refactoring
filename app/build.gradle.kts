@@ -59,8 +59,6 @@ android {
 dependencies {
     // module
     implementation(project(":feature_main"))
-    implementation(project(":feature_search"))
-    implementation(project(":feature_favorite"))
 
     // ktx
     implementation("androidx.core:core-ktx:1.7.0")
