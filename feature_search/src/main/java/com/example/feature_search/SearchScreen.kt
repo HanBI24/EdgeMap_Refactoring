@@ -1,5 +1,6 @@
 package com.example.feature_search
 
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -48,11 +50,16 @@ fun SearchScreen() {
         GridItem("12", Color.Gray, 60.dp),
         GridItem("13", Color.Cyan, 200.dp),
         GridItem("14", Color.Red, 150.dp),
-        GridItem("15", Color.Yellow, 40.dp)
+        GridItem("15", Color.Yellow, 40.dp),
+        GridItem("16", Color.Blue, 100.dp)
     )
 
+    val cellConfiguration = if (LocalConfiguration.current.orientation == ORIENTATION_LANDSCAPE) {
+        StaggeredGridCells.Adaptive(minSize = 175.dp)
+    } else StaggeredGridCells.Fixed(2)
+
     LazyVerticalStaggeredGrid(
-        columns = StaggeredGridCells.Fixed(2),
+        columns = cellConfiguration,
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
