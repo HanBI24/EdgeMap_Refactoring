@@ -57,4 +57,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.0")
 
     implementation("androidx.navigation:navigation-compose:2.6.0-alpha08")
+
+    implementation("androidx.compose.foundation:foundation:1.3.0")
 }

@@ -28,13 +28,13 @@ fun SearchScreen() {
     }
 }
 
-@Composable()
+@Composable
 fun SearchScreenVerticalGrid() {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 128.dp),
+        columns = GridCells.Adaptive(minSize = 150.dp),
         contentPadding = PaddingValues(12.dp)
     ) {
-        items(100) {
+        items(4) {
             SearchScreenVerticalGridItem(it)
         }
     }
