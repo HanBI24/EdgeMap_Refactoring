@@ -52,7 +52,9 @@ fun SearchScreen() {
     )
 
     LazyVerticalStaggeredGrid(
-        columns = StaggeredGridCells.Fixed(2)
+        columns = StaggeredGridCells.Fixed(2),
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(items) {
             Item(item = it)
