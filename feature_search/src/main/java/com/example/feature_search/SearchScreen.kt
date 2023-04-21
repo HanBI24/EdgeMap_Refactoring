@@ -4,37 +4,25 @@ import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @ExperimentalFoundationApi
 @Composable
 fun SearchScreen() {
-//    Box(
-//        modifier = Modifier.fillMaxSize(),
-//        contentAlignment = Alignment.Center
-//    ) {
-//
-//    }
+    LazyStaggeredGrid()
+}
 
+@ExperimentalFoundationApi
+@Composable
+fun LazyStaggeredGrid() {
     val items = listOf(
         GridItem("1", Color.Magenta, 130.dp),
         GridItem("2", Color.Red, 30.dp),
@@ -62,15 +50,16 @@ fun SearchScreen() {
         columns = cellConfiguration,
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalItemSpacing = 16.dp
     ) {
         items(items) {
-            Item(item = it)
+            LazyVerticalStaggeredGridItem(item = it)
         }
     }
 }
 
 @Composable
-fun Item(
+fun LazyVerticalStaggeredGridItem(
     modifier: Modifier = Modifier,
     item: GridItem
 ) {
