@@ -17,4 +17,4 @@
 * Room
 * Coil
 * Naver API (Map, Direction 5, GeoCoding, Reverse GeoCoding, Search)
-* Duru API
+* Tour API
