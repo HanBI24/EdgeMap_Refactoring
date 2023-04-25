@@ -63,4 +63,7 @@ dependencies {
 
     // Gson
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Paging 3.0
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 }
