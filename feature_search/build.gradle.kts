@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -59,4 +61,20 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.6.0-alpha08")
 
     implementation("androidx.compose.foundation:foundation:1.3.0")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.43")
+    kapt("com.google.dagger:hilt-android-compiler:2.43")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-rc01")
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:1.3.2")
+
+    // Paging 3.0
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
+
+    // Compose dependencies
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
 }

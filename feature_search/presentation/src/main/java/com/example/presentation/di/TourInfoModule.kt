@@ -2,6 +2,8 @@ package com.example.presentation.di
 
 import com.example.common.Constants.TOUR_BASE_URL
 import com.example.data.remote.api.TourInfoApi
+import com.example.data.repository.TourInfoRepositoryInfoImpl
+import com.example.domain.repository.TourInfoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object TourInfoModule {
+
+    @Provides
+    @Singleton
+    fun provideTourInfoRepository(
+        tourInfoApi: TourInfoApi
+    ): TourInfoRepository {
+        return TourInfoRepositoryInfoImpl(tourInfoApi)
+    }
 
     @Provides
     @Singleton

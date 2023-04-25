@@ -88,8 +88,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.43")
+    kapt("com.google.dagger:hilt-android-compiler:2.43")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-rc01")
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
 }

@@ -2,38 +2,33 @@ package com.example.feature_search
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import com.example.domain.model.TourInfoItem
 
 @ExperimentalFoundationApi
 @Composable
-fun SearchTourList() {
-    LazyStaggeredGrid()
+fun SearchTourList(tourInfo: LazyPagingItems<TourInfoItem>) {
+    LazyStaggeredGrid(tourInfo)
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @ExperimentalFoundationApi
 @Composable
-fun LazyStaggeredGrid() {
-    val items: () -> List<GridItem> = {
-        val k = arrayListOf<GridItem>()
-        for(i in 0..100) {
-            k.add(GridItem(i.toString(), Color.LightGray, randomSizeGridItem().dp))
-        }
-        k.toList()
-    }
-
+fun LazyStaggeredGrid(tourInfo: LazyPagingItems<TourInfoItem>) {
     val cellConfiguration = if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         StaggeredGridCells.Adaptive(minSize = 175.dp)
     } else StaggeredGridCells.Fixed(2)
@@ -44,28 +39,31 @@ fun LazyStaggeredGrid() {
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalItemSpacing = 16.dp
     ) {
-        items(items()) {
-            LazyVerticalStaggeredGridItem(item = it)
+        items(tourInfo.itemCount) { index ->
+            tourInfo[index]?.let { LazyVerticalStaggeredGridItem(tourInfoItem = it) }
         }
     }
 }
 
-fun randomSizeGridItem() = (150..300).random()
-
+@ExperimentalCoilApi
 @Composable
 fun LazyVerticalStaggeredGridItem(
     modifier: Modifier = Modifier,
-    item: GridItem
+    tourInfoItem: TourInfoItem
 ) {
+    val painter = rememberImagePainter(data = tourInfoItem.galWebImageUrl) {
+        crossfade(1000)
+    }
+
     Box(
-        modifier = modifier
-            .background(item.color)
-            .height(item.size)
-    )
+        modifier = modifier.height(randomSizeGridItem().dp)
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = "Tour Info API",
+            contentScale = ContentScale.Fit
+        )
+    }
 }
 
-data class GridItem(
-    val id: String,
-    val color: Color,
-    val size: Dp
-)
+fun randomSizeGridItem() = (150..300).random()
