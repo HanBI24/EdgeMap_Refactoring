@@ -10,7 +10,10 @@ class TourInfoRepositoryInfoImpl @Inject constructor(
     private val tourInfoApi: TourInfoApi
 ) : TourInfoRepository {
     override suspend fun getTourInfo(numOfRows: Int, pageNo: Int): List<TourInfoItem> {
-        return tourInfoApi.getTourInfo(numOfRows = numOfRows, pageNo = pageNo).response.body.items.item.map {
+        return tourInfoApi.getTourInfo(
+            numOfRows = numOfRows,
+            pageNo = pageNo
+        ).response.body.items.item.map {
             it.toTourInfoItem()
         }
     }
