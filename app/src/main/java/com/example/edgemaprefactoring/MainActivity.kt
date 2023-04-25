@@ -3,6 +3,7 @@ package com.example.edgemaprefactoring
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_main.navigation.SetupNavGraph
@@ -11,6 +12,7 @@ import com.example.feature_main.MainScreenSetNavigation
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalFoundationApi
 @ExperimentalNaverMapApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

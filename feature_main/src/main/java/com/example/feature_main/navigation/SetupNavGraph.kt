@@ -1,5 +1,6 @@
 package com.example.feature_main.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -8,6 +9,7 @@ import com.example.feature_favorite.FavoriteScreen
 import com.example.feature_main.MainScreen
 import com.example.feature_search.SearchScreen
 
+@ExperimentalFoundationApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
