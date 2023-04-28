@@ -13,8 +13,13 @@
 * Flow, StateFlow, SharedFlow
 * Hilt
 * Retrofit
+<<<<<<< HEAD
 * Kotlinx Serialization (now Gson)
 * Room
+=======
+* Kotlinx Serialization
+* Room  
+>>>>>>> 4b95a188e47d6bff44694fa9d5b4e9253c42b565
 * Coil
 * Naver API (Map, Direction 5, GeoCoding, Reverse GeoCoding, Search)
 * Tour API (Tour Photo)
