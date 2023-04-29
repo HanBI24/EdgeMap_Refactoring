@@ -13,6 +13,6 @@ import com.example.presentation.viewmodel.SearchScreenViewModel
 fun SearchScreen() {
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
     val tourInfo = searchScreenViewModel.getTourInfoPagination().collectAsLazyPagingItems()
-    Log.d("args", tourInfo.itemCount.toString())
+    Log.d("args", tourInfo.toString())
     SearchTourList(tourInfo)
 }

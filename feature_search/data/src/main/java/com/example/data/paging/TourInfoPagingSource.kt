@@ -23,8 +23,6 @@ class TourInfoPagingSource @Inject constructor(
 //            val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageNo)
             val tourInfoResponse = tourInfoApi.getTourInfo(ITEM_PER_PAGE, pageNo)
                 .response.body.items.item.map { it.toTourInfoItem() }
-            Log.d("args_response", tourInfoResponse.toString())
-            Log.d("args_response", pageNo.toString())
 
             LoadResult.Page(
                 data = tourInfoResponse,

@@ -62,7 +62,7 @@ fun LazyVerticalStaggeredGridItem(
         Image(
             painter = painter,
             contentDescription = "Tour Info API",
-            contentScale = ContentScale.Fit
+            contentScale = ContentScale.Crop
         )
     }
 }
