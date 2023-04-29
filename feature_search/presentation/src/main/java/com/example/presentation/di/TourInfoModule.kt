@@ -4,6 +4,7 @@ import com.example.common.Constants.TOUR_BASE_URL
 import com.example.data.remote.api.TourInfoApi
 import com.example.data.repository.TourInfoRepositoryInfoImpl
 import com.example.domain.repository.TourInfoRepository
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,6 +36,8 @@ object TourInfoModule {
             .build()
     }
 
+    val gson = GsonBuilder().setLenient().create()
+
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -43,7 +46,7 @@ object TourInfoModule {
         return Retrofit.Builder()
             .baseUrl(TOUR_BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 

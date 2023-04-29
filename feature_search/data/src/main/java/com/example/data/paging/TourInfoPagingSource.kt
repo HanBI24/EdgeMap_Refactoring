@@ -1,20 +1,30 @@
 package com.example.data.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.common.Constants.ITEM_PER_PAGE
 import com.example.common.Constants.PREV_NEXT_ITEM_PAGE
+import com.example.data.mapper.Mapper.toTourInfoItem
+import com.example.data.remote.api.TourInfoApi
 import com.example.domain.model.TourInfoItem
 import com.example.domain.repository.TourInfoRepository
+import javax.inject.Inject
 
-class TourInfoPagingSource constructor(
-    private val tourInfoRepository: TourInfoRepository
+class TourInfoPagingSource @Inject constructor(
+//    private val tourInfoRepository: TourInfoRepository
+    private val tourInfoApi: TourInfoApi
 ) : PagingSource<Int, TourInfoItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TourInfoItem> {
         return try {
+            Log.d("args", "paging success")
             val pageNo = params.key ?: 1
-            val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageNo)
+//            val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageNo)
+            val tourInfoResponse = tourInfoApi.getTourInfo(ITEM_PER_PAGE, pageNo)
+                .response.body.items.item.map { it.toTourInfoItem() }
+            Log.d("args_response", tourInfoResponse.toString())
+            Log.d("args_response", pageNo.toString())
 
             LoadResult.Page(
                 data = tourInfoResponse,
@@ -22,6 +32,7 @@ class TourInfoPagingSource constructor(
                 nextKey = pageNo.plus(PREV_NEXT_ITEM_PAGE)
             )
         } catch (e: Exception) {
+            Log.d("args", "paging failed $e")
             LoadResult.Error(e)
         }
     }
