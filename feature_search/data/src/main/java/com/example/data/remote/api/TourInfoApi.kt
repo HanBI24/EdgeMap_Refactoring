@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface TourInfoApi {
 
-    @GET("/galleryList1")
+    @GET("/B551011/PhotoGalleryService1/galleryList1")
     suspend fun getTourInfo(
         @Query("numOfRows") numOfRows: Int,
         @Query("pageNo") pageNo: Int,
