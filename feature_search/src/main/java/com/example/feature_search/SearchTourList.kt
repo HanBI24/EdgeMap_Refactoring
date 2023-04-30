@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
@@ -55,9 +59,10 @@ fun LazyVerticalStaggeredGridItem(
     val painter = rememberImagePainter(data = tourInfoItem.galWebImageUrl) {
         crossfade(1000)
     }
+    val itemSize by rememberSaveable { mutableStateOf(randomSizeGridItem()) }
 
     Box(
-        modifier = modifier.height(randomSizeGridItem().dp)
+        modifier = modifier.height(itemSize.dp)
     ) {
         Image(
             painter = painter,
