@@ -12,17 +12,14 @@ import com.example.domain.repository.TourInfoRepository
 import javax.inject.Inject
 
 class TourInfoPagingSource @Inject constructor(
-//    private val tourInfoRepository: TourInfoRepository
-    private val tourInfoApi: TourInfoApi
+    private val tourInfoRepository: TourInfoRepository
 ) : PagingSource<Int, TourInfoItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TourInfoItem> {
         return try {
             Log.d("args", "paging success")
             val pageNo = params.key ?: 1
-//            val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageNo)
-            val tourInfoResponse = tourInfoApi.getTourInfo(ITEM_PER_PAGE, pageNo)
-                .response.body.items.item.map { it.toTourInfoItem() }
+            val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageNo)
 
             LoadResult.Page(
                 data = tourInfoResponse,

@@ -19,8 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-//    private val tourInfoRepository: TourInfoRepository
-    private val tourInfoApi: TourInfoApi
+    private val tourInfoRepository: TourInfoRepository
 ) : ViewModel() {
 
     private val _tourInfoState = mutableStateOf(TourInfoState())
@@ -29,7 +28,7 @@ class SearchScreenViewModel @Inject constructor(
     fun getTourInfoPagination(): Flow<PagingData<TourInfoItem>> {
         Log.d("args", "view model")
         return Pager(PagingConfig(pageSize = ITEM_PER_PAGE)) {
-            TourInfoPagingSource(tourInfoApi)
+            TourInfoPagingSource(tourInfoRepository)
         }.flow.cachedIn(viewModelScope)
     }
 }
