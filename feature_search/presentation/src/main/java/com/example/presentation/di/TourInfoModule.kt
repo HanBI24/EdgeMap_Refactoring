@@ -48,7 +48,7 @@ object TourInfoModule {
             .build()
     }
 
-    val gson = GsonBuilder().setLenient().create()
+    private val gson = GsonBuilder().setLenient().create()
 
     @Provides
     @Singleton

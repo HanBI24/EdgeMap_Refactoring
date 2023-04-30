@@ -11,7 +11,7 @@ import com.example.domain.model.TourInfoItem
 import com.example.domain.repository.TourInfoRepository
 import javax.inject.Inject
 
-class TourInfoPagingSource @Inject constructor(
+class TourInfoPagingSource constructor(
     private val tourInfoRepository: TourInfoRepository
 ) : PagingSource<Int, TourInfoItem>() {
 

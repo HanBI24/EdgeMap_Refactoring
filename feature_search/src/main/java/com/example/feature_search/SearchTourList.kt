@@ -23,20 +23,26 @@ import androidx.paging.compose.LazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.domain.model.TourInfoItem
+import com.example.presentation.state.TourInfoState
 
 @ExperimentalFoundationApi
 @Composable
-fun SearchTourList(tourInfo: LazyPagingItems<TourInfoItem>) {
+fun SearchTourList(
+    tourInfo: LazyPagingItems<TourInfoItem>
+) {
     LazyStaggeredGrid(tourInfo)
 }
 
 @OptIn(ExperimentalCoilApi::class)
 @ExperimentalFoundationApi
 @Composable
-fun LazyStaggeredGrid(tourInfo: LazyPagingItems<TourInfoItem>) {
-    val cellConfiguration = if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        StaggeredGridCells.Adaptive(minSize = 175.dp)
-    } else StaggeredGridCells.Fixed(2)
+fun LazyStaggeredGrid(
+    tourInfo: LazyPagingItems<TourInfoItem>
+) {
+    val cellConfiguration =
+        if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            StaggeredGridCells.Adaptive(minSize = 175.dp)
+        } else StaggeredGridCells.Fixed(2)
 
     LazyVerticalStaggeredGrid(
         columns = cellConfiguration,
@@ -45,7 +51,11 @@ fun LazyStaggeredGrid(tourInfo: LazyPagingItems<TourInfoItem>) {
         verticalItemSpacing = 16.dp
     ) {
         items(tourInfo.itemCount) { index ->
-            tourInfo[index]?.let { LazyVerticalStaggeredGridItem(tourInfoItem = it) }
+            tourInfo[index]?.let {
+                LazyVerticalStaggeredGridItem(
+                    tourInfoItem = it
+                )
+            }
         }
     }
 }
@@ -59,10 +69,9 @@ fun LazyVerticalStaggeredGridItem(
     val painter = rememberImagePainter(data = tourInfoItem.galWebImageUrl) {
         crossfade(1000)
     }
-    val itemSize by rememberSaveable { mutableStateOf(randomSizeGridItem()) }
 
     Box(
-        modifier = modifier.height(itemSize.dp)
+        modifier = modifier.height(tourInfoItem.photoSize.dp)
     ) {
         Image(
             painter = painter,
@@ -71,5 +80,3 @@ fun LazyVerticalStaggeredGridItem(
         )
     }
 }
-
-fun randomSizeGridItem() = (150..300).random()

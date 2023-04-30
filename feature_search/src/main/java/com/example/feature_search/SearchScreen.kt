@@ -10,6 +10,6 @@ import com.example.presentation.viewmodel.SearchScreenViewModel
 @Composable
 fun SearchScreen() {
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
-    val tourInfo = searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
-    SearchTourList(tourInfo)
+    val tourInfoItem = searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
+    SearchTourList(tourInfoItem)
 }

@@ -27,9 +27,7 @@ class SearchScreenViewModel @Inject constructor(
         _tourInfoState.value = tourInfoState.value.copy(
             toruInfoItem = Pager(PagingConfig(pageSize = ITEM_PER_PAGE)) {
                 TourInfoPagingSource(tourInfoRepository)
-            }.flow.cachedIn(viewModelScope).map { pagingData ->
-                pagingData.map { it }
-            }
+            }.flow.cachedIn(viewModelScope)
         )
     }
 }

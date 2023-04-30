@@ -10,7 +10,10 @@ object Mapper {
             galWebImageUrl = galWebImageUrl,
             galPhotographyMonth = galPhotographyMonth,
             galPhotographyLocation = galPhotographyLocation,
-            galPhotographer = galPhotographer
+            galPhotographer = galPhotographer,
+            photoSize = randomSizeGridItem()
         )
     }
+
+    private fun randomSizeGridItem() = (150..300).random()
 }
