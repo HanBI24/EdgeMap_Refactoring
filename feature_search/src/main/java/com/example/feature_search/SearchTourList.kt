@@ -49,32 +49,38 @@ fun LazyStaggeredGrid(
 
 
     Box(modifier = Modifier.fillMaxSize()) {
-        tourInfo.apply {
-            when (loadState.append) {
-                is LoadState.Loading -> {
-                    CircularProgressIndicator(Modifier.align(Alignment.TopCenter))
+        LazyVerticalStaggeredGrid(
+            columns = cellConfiguration,
+            contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalItemSpacing = 16.dp
+        ) {
+            items(tourInfo.itemCount) { index ->
+                tourInfo[index]?.let {
+                    LazyVerticalStaggeredGridItem(
+                        tourInfoItem = it
+                    )
                 }
-                is LoadState.NotLoading -> {
+            }
+        }
+        tourInfo.apply {
+            when {
+                loadState.refresh is LoadState.Loading -> {
+                    // 처음 로드될 때
                     CircularProgressIndicator(Modifier.align(Alignment.Center))
                 }
-                is LoadState.Error -> {
-                    CircularProgressIndicator(Modifier.align(Alignment.BottomCenter))
+                loadState.append is LoadState.Loading -> {
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
                 }
+//                is LoadState.NotLoading -> {
+//                     로드가 완료되고 아무런 동작을 하지 않을 때
+//                     CircularProgressIndicator(Modifier.align(Alignment.Center))
+//                }
+//                is LoadState.Error -> {
+//                    CircularProgressIndicator(Modifier.align(Alignment.BottomCenter))
+//                }
                 else -> {
-                    LazyVerticalStaggeredGrid(
-                        columns = cellConfiguration,
-                        contentPadding = PaddingValues(16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalItemSpacing = 16.dp
-                    ) {
-                        items(tourInfo.itemCount) { index ->
-                            tourInfo[index]?.let {
-                                LazyVerticalStaggeredGridItem(
-                                    tourInfoItem = it
-                                )
-                            }
-                        }
-                    }
+
                 }
             }
         }
@@ -95,7 +101,6 @@ fun LazyVerticalStaggeredGridItem(
     Box(
         modifier = modifier.height(tourInfoItem.photoSize.dp)
     ) {
-        ImagePainterState(painter = painter.state)
         Image(
             painter = painter,
             contentDescription = "Tour Info API",
@@ -114,7 +119,7 @@ fun ImagePainterState(painter: ImagePainter.State) {
         is ImagePainter.State.Empty -> {
             ShowProgressBar()
         }
-        else -> {ShowProgressBar()}
+        else -> { }
     }
 }
 
