@@ -50,14 +50,14 @@ fun LazyStaggeredGrid(
 
     Box(modifier = Modifier.fillMaxSize()) {
         tourInfo.apply {
-            when {
-                loadState.append is LoadState.Loading -> {
+            when (loadState.append) {
+                is LoadState.Loading -> {
                     CircularProgressIndicator(Modifier.align(Alignment.TopCenter))
                 }
-                loadState.append is LoadState.NotLoading -> {
+                is LoadState.NotLoading -> {
                     CircularProgressIndicator(Modifier.align(Alignment.Center))
                 }
-                loadState.append is LoadState.Error -> {
+                is LoadState.Error -> {
                     CircularProgressIndicator(Modifier.align(Alignment.BottomCenter))
                 }
                 else -> {
