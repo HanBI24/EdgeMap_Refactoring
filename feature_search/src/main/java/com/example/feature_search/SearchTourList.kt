@@ -1,7 +1,6 @@
 package com.example.feature_search
 
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -9,24 +8,18 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.example.domain.model.TourInfoItem
-import com.example.presentation.state.TourInfoState
 
 @ExperimentalFoundationApi
 @Composable
@@ -63,27 +56,7 @@ fun LazyStaggeredGrid(
                 }
             }
         }
-        tourInfo.apply {
-            when {
-                loadState.refresh is LoadState.Loading -> {
-                    // 처음 로드될 때
-                    CircularProgressIndicator(Modifier.align(Alignment.Center))
-                }
-                loadState.append is LoadState.Loading -> {
-                    CircularProgressIndicator(Modifier.align(Alignment.Center))
-                }
-//                is LoadState.NotLoading -> {
-//                     로드가 완료되고 아무런 동작을 하지 않을 때
-//                     CircularProgressIndicator(Modifier.align(Alignment.Center))
-//                }
-//                is LoadState.Error -> {
-//                    CircularProgressIndicator(Modifier.align(Alignment.BottomCenter))
-//                }
-                else -> {
-
-                }
-            }
-        }
+        TourInfoCircleIndicator(tourInfo)
     }
 }
 
@@ -109,6 +82,40 @@ fun LazyVerticalStaggeredGridItem(
     }
 }
 
+@Composable
+fun TourInfoCircleIndicator(
+    tourInfo: LazyPagingItems<TourInfoItem>
+) {
+    BoxScopeWithLayout {
+        tourInfo.apply {
+            when {
+                loadState.refresh is LoadState.Loading -> {
+                    // 처음 로드될 때
+                    // 또는 데이터 새로고침할 때
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
+                loadState.append is LoadState.Loading -> {
+                    // 데이터 추가될 때
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
+//                is LoadState.NotLoading -> {
+//                    로드가 완료되고 아무런 동작을 하지 않을 때
+//                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+//                }
+//                is LoadState.Error -> {
+//                    로드 중 에러 발생
+//                    CircularProgressIndicator(Modifier.align(Alignment.BottomCenter))
+//                }
+            }
+        }
+    }
+}
+
+@Composable
+fun BoxScopeWithLayout(
+    tourInfoIndicator: @Composable BoxScope.() -> Unit
+) = Box(modifier = Modifier.fillMaxSize()) { tourInfoIndicator() }
+
 @ExperimentalCoilApi
 @Composable
 fun ImagePainterState(painter: ImagePainter.State) {
@@ -119,7 +126,7 @@ fun ImagePainterState(painter: ImagePainter.State) {
         is ImagePainter.State.Empty -> {
             ShowProgressBar()
         }
-        else -> { }
+        else -> {}
     }
 }
 
