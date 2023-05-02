@@ -68,6 +68,7 @@ fun LazyVerticalStaggeredGridItem(
 ) {
     val painter = rememberImagePainter(data = tourInfoItem.galWebImageUrl) {
         crossfade(1000)
+//        placeholder(R.drawable.ic_error)
         error(R.drawable.ic_error)
     }
 
@@ -77,7 +78,8 @@ fun LazyVerticalStaggeredGridItem(
         Image(
             painter = painter,
             contentDescription = "Tour Info API",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }
