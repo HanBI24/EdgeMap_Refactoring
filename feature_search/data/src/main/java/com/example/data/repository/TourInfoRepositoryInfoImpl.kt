@@ -17,4 +17,11 @@ class TourInfoRepositoryInfoImpl @Inject constructor(
             it.toTourInfoItem()
         }
     }
+
+    override suspend fun getTourInfoSize(numOfRows: Int, pageNo: Int): Int {
+        return tourInfoApi.getTourInfo(
+            numOfRows = numOfRows,
+            pageNo = pageNo
+        ).response.body.totalCount
+    }
 }

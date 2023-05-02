@@ -4,4 +4,6 @@ import com.example.domain.model.TourInfoItem
 
 interface TourInfoRepository {
     suspend fun getTourInfo(numOfRows: Int, pageNo: Int): List<TourInfoItem>
+
+    suspend fun getTourInfoSize(numOfRows: Int, pageNo: Int): Int
 }
