@@ -3,11 +3,12 @@ package com.example.feature_search
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -71,16 +72,23 @@ fun LazyVerticalStaggeredGridItem(
 //        placeholder(R.drawable.ic_error)
         error(R.drawable.ic_error)
     }
+    var isTourInfoItemClicked by remember { mutableStateOf(false) }
 
     Box(
-        modifier = modifier.height(tourInfoItem.photoSize.dp)
+        modifier = modifier
+            .height(tourInfoItem.photoSize.dp)
+            .clickable { isTourInfoItemClicked = true }
     ) {
-        Image(
-            painter = painter,
-            contentDescription = "Tour Info API",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.align(Alignment.Center)
-        )
+        if(isTourInfoItemClicked) {
+            Image(
+                painter = painter,
+                contentDescription = "Tour Info API",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.align(Alignment.Center)
+            )
+        } else {
+
+        }
     }
 }
 
