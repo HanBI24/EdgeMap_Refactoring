@@ -72,23 +72,20 @@ fun LazyVerticalStaggeredGridItem(
 //        placeholder(R.drawable.ic_error)
         error(R.drawable.ic_error)
     }
-    var isTourInfoItemClicked by remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
             .height(tourInfoItem.photoSize.dp)
-            .clickable { isTourInfoItemClicked = true }
-    ) {
-        if(isTourInfoItemClicked) {
-            Image(
-                painter = painter,
-                contentDescription = "Tour Info API",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        } else {
+            .clickable {
 
-        }
+            }
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = "Tour Info API",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.align(Alignment.Center)
+        )
     }
 }
 
