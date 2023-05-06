@@ -1,6 +1,8 @@
 package com.example.feature_search
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -14,12 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
+import com.example.common.Constants.TOUR_INFO_WEB_VIEW_BASE_URL
 import com.example.domain.model.TourInfoItem
 
 @ExperimentalFoundationApi
@@ -72,12 +77,21 @@ fun LazyVerticalStaggeredGridItem(
 //        placeholder(R.drawable.ic_error)
         error(R.drawable.ic_error)
     }
+    val tourInfoItemContext = LocalContext.current
 
     Box(
         modifier = modifier
             .height(tourInfoItem.photoSize.dp)
             .clickable {
-
+                val tourInfoItemBrowserIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(TOUR_INFO_WEB_VIEW_BASE_URL + tourInfoItem.galTitle)
+                )
+                ContextCompat.startActivity(
+                    tourInfoItemContext,
+                    tourInfoItemBrowserIntent,
+                    null
+                )
             }
     ) {
         Image(
