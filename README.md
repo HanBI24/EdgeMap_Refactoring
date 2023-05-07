@@ -19,4 +19,5 @@
 * Room  
 * Coil
 * Naver API (Map, Direction 5, GeoCoding, Reverse GeoCoding, Search)
-* Tour API (Tour Photo)
+* Tour API (Tour Photo)  
+* Lazy Staggered Grids  
