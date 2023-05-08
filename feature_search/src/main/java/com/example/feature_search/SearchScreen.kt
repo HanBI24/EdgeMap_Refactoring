@@ -1,6 +1,7 @@
 package com.example.feature_search
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,6 +13,11 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -26,14 +32,27 @@ fun SearchScreen() {
     val tourInfoItem =
         searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
     val searchWord = searchScreenViewModel.searchWord.value
+    val focusRequester = remember { FocusRequester() }
+    val focusManager = LocalFocusManager.current
 
-    Column(modifier = Modifier.padding(12.dp)) {
+    LaunchedEffect(key1 = true) {
+        focusRequester.requestFocus()
+    }
+
+    Column(
+        modifier = Modifier
+            .padding(12.dp)
+            .addFocusCleaner(focusManager)
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
+                .focusRequester(focusRequester)
         ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = searchWord,
@@ -59,5 +78,14 @@ fun SearchScreen() {
             }
         }
         SearchTourList(tourInfoItem)
+    }
+}
+
+fun Modifier.addFocusCleaner(focusManager: FocusManager, doOnClear: () -> Unit = {}): Modifier {
+    return this.pointerInput(Unit) {
+        detectTapGestures(onTap = {
+            doOnClear()
+            focusManager.clearFocus()
+        })
     }
 }
