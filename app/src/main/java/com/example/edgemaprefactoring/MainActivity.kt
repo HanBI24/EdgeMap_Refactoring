@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.Surface
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_main.navigation.SetupNavGraph
@@ -23,7 +24,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             EdgeMapRefactoringTheme {
                 navController = rememberNavController()
-                MainScreenSetNavigation(navController)
+                Surface {
+                    MainScreenSetNavigation(navController)
+                }
             }
         }
     }

@@ -73,9 +73,7 @@ fun BottomButtonView(
     Box(
         modifier = modifier
     ) {
-        Row(
-            modifier = Modifier.background(color = Color.White)
-        ) {
+        Row {
             bottomButtonTitleList.forEach { entry ->
                 BottomButton(
                     modifier = Modifier
