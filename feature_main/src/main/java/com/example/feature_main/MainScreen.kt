@@ -1,7 +1,6 @@
 package com.example.feature_main
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -52,7 +51,8 @@ fun NaverMapView(modifier: Modifier = Modifier) {
         cameraPositionState = cameraPositionState,
         locationSource = rememberFusedLocationSource(),
         properties = MapProperties(
-            locationTrackingMode = LocationTrackingMode.Follow
+            locationTrackingMode = LocationTrackingMode.Follow,
+            isNightModeEnabled = true
         ),
         uiSettings = MapUiSettings(
             isLocationButtonEnabled = true,
