@@ -53,32 +53,43 @@ fun SearchScreen() {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = searchWord,
-                    onValueChange = searchScreenViewModel::onSearchWordChanged,
-                    placeholder = { Text("목적지를 입력하세요.") },
-                    label = { Text("목적지 검색") },
-                    maxLines = 1,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Search,
-                            contentDescription = "Search Icon"
-                        )
-                    },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Search
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onSearch = {}
-                    ),
-                    singleLine = true
+                SearchTextField(
+                    searchWord,
+                    searchScreenViewModel
                 )
             }
         }
         SearchTourList(tourInfoItem)
     }
+}
+
+@Composable
+fun SearchTextField(
+    searchWord: String,
+    searchScreenViewModel: SearchScreenViewModel
+) {
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = searchWord,
+        onValueChange = searchScreenViewModel::onSearchWordChanged,
+        placeholder = { Text("목적지를 입력하세요.") },
+        label = { Text("목적지 검색") },
+        maxLines = 1,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = "Search Icon"
+            )
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Search
+        ),
+        keyboardActions = KeyboardActions(
+            onSearch = {}
+        ),
+        singleLine = true
+    )
 }
 
 fun Modifier.addFocusCleaner(focusManager: FocusManager, doOnClear: () -> Unit = {}): Modifier {
