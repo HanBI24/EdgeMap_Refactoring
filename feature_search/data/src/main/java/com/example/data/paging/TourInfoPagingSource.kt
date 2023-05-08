@@ -14,7 +14,7 @@ class TourInfoPagingSource constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TourInfoItem> {
         return try {
             val pageNo = params.key ?: 1
-            val pageSize = tourInfoRepository.getTourInfoSize(ITEM_PER_PAGE, pageNo) / 10
+            val pageSize = tourInfoRepository.getTourInfoSize(ITEM_PER_PAGE, pageNo) / ITEM_PER_PAGE
             val pageList = (1..pageSize).shuffled()
             val tourInfoResponse = tourInfoRepository.getTourInfo(ITEM_PER_PAGE, pageList[pageNo])
 
