@@ -16,7 +16,7 @@ import com.example.presentation.viewmodel.SearchScreenViewModel
 fun SearchScreen() {
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
     val tourInfoItem = searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
-    var searchWord by remember { mutableStateOf("") }
+    val searchWord = searchScreenViewModel.searchWord.value
 
     Column(modifier = Modifier.padding(12.dp)) {
         Box(
@@ -28,7 +28,7 @@ fun SearchScreen() {
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = searchWord,
-                    onValueChange = { searchWord = it }
+                    onValueChange = searchScreenViewModel::onSearchWordChanged
                 )
             }
         }

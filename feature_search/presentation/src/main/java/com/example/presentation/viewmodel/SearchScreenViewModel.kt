@@ -23,6 +23,13 @@ class SearchScreenViewModel @Inject constructor(
     private val _tourInfoState = mutableStateOf(TourInfoState())
     val tourInfoState: State<TourInfoState> = _tourInfoState
 
+    private val _searchWord = mutableStateOf("")
+    val searchWord: State<String> = _searchWord
+
+    fun onSearchWordChanged(searchWord: String) {
+        _searchWord.value = searchWord
+    }
+
     init {
         _tourInfoState.value = tourInfoState.value.copy(
             toruInfoItem = Pager(PagingConfig(pageSize = ITEM_PER_PAGE)) {
