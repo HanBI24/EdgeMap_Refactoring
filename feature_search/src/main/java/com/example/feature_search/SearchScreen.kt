@@ -32,12 +32,7 @@ fun SearchScreen() {
     val tourInfoItem =
         searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
     val searchWord = searchScreenViewModel.searchWord.value
-    val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-
-    LaunchedEffect(key1 = true) {
-        focusRequester.requestFocus()
-    }
 
     Column(
         modifier = Modifier
@@ -48,7 +43,6 @@ fun SearchScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
-                .focusRequester(focusRequester)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth()
