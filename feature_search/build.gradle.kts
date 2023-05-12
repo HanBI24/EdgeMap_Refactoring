@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":feature_search:presentation"))
     implementation(project(":feature_search:domain"))
     implementation(project(":feature_search:data"))
+    implementation(project(":feature_search_result"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     testImplementation("junit:junit:4.13.2")
