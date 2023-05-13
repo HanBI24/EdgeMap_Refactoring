@@ -86,7 +86,12 @@ fun SearchTextField(
             imeAction = ImeAction.Search
         ),
         keyboardActions = KeyboardActions(
-            onSearch = { navController.navigate(route = BottomNavScreen.SearchResult.route) }
+            onSearch = {
+                if(searchWord.isBlank()) return@KeyboardActions
+                navController.navigate(
+                    route = BottomNavScreen.SearchResult.passSearchWord(searchWord)
+                )
+            }
         ),
         singleLine = true
     )

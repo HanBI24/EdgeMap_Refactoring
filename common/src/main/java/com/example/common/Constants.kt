@@ -6,4 +6,6 @@ object Constants {
 
     const val ITEM_PER_PAGE = 30
     const val PREV_NEXT_ITEM_PAGE = 1
+
+    const val PASS_SEARCH_WORD = "search_word"
 }
