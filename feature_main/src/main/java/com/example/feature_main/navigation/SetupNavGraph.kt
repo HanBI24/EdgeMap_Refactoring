@@ -20,10 +20,13 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = BottomNavScreen.Home.route) {
             MainScreen(navController = navController)
         }
-        composable(route = com.example.navigation.BottomNavScreen.Search.route) {
+        composable(route = BottomNavScreen.Search.route) {
             SearchScreen(navController = navController)
         }
-        composable(route = com.example.navigation.BottomNavScreen.Favorite.route) {
+        composable(route = BottomNavScreen.Favorite.route) {
+            FavoriteScreen()
+        }
+        composable(route = BottomNavScreen.SearchResult.route) {
             FavoriteScreen()
         }
     }
