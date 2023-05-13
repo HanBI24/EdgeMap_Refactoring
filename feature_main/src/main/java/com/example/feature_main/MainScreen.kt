@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.common.location.rememberFusedLocationSource
-import com.example.feature_main.navigation.BottomNavScreen
+import com.example.navigation.BottomNavScreen
 import com.naver.maps.map.compose.*
 
 @Composable

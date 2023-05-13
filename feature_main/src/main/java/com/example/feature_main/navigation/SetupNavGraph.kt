@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.feature_favorite.FavoriteScreen
 import com.example.feature_main.MainScreen
 import com.example.feature_search.SearchScreen
+import com.example.navigation.BottomNavScreen
 
 @ExperimentalFoundationApi
 @Composable
@@ -19,10 +20,10 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = BottomNavScreen.Home.route) {
             MainScreen(navController = navController)
         }
-        composable(route = BottomNavScreen.Search.route) {
+        composable(route = com.example.navigation.BottomNavScreen.Search.route) {
             SearchScreen(navController = navController)
         }
-        composable(route = BottomNavScreen.Favorite.route) {
+        composable(route = com.example.navigation.BottomNavScreen.Favorite.route) {
             FavoriteScreen()
         }
     }

@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":navigation"))
     implementation(project(":feature_search"))
     implementation(project(":feature_favorite"))
 
