@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":navigation"))
     implementation(project(":feature_search"))
     implementation(project(":feature_favorite"))
+    implementation(project(":feature_search_result"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     testImplementation("junit:junit:4.13.2")
