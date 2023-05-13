@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/feature_search/presentation" />
             <option value="$PROJECT_DIR$/feature_search_result" />
             <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>
       </GradleProjectSettings>
