@@ -22,12 +22,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.presentation.viewmodel.SearchScreenViewModel
 
 @ExperimentalFoundationApi
 @Composable
-fun SearchScreen() {
+fun SearchScreen(
+    navController: NavHostController
+) {
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
     val tourInfoItem =
         searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
@@ -49,7 +52,8 @@ fun SearchScreen() {
             ) {
                 SearchTextField(
                     searchWord,
-                    searchScreenViewModel
+                    searchScreenViewModel,
+                    navController
                 )
             }
         }
@@ -60,7 +64,8 @@ fun SearchScreen() {
 @Composable
 fun SearchTextField(
     searchWord: String,
-    searchScreenViewModel: SearchScreenViewModel
+    searchScreenViewModel: SearchScreenViewModel,
+    navController: NavHostController
 ) {
     TextField(
         modifier = Modifier.fillMaxWidth(),
