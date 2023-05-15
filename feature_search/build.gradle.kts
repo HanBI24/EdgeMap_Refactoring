@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation(project(":common"))
     implementation(project(":navigation"))
+    implementation(project(":webview"))
     implementation(project(":feature_search:presentation"))
     implementation(project(":feature_search:domain"))
     implementation(project(":feature_search:data"))

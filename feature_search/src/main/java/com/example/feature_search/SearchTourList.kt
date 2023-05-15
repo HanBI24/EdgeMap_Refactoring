@@ -26,6 +26,7 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.example.common.Constants.TOUR_INFO_WEB_VIEW_BASE_URL
 import com.example.domain.model.TourInfoItem
+import com.example.webview.WebViewScreen
 
 @ExperimentalFoundationApi
 @Composable
@@ -78,20 +79,23 @@ fun LazyVerticalStaggeredGridItem(
         error(R.drawable.ic_error)
     }
     val tourInfoItemContext = LocalContext.current
+    var showByWebView by remember { mutableStateOf(false) }
+
 
     Box(
         modifier = modifier
             .height(tourInfoItem.photoSize.dp)
             .clickable {
-                val tourInfoItemBrowserIntent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(TOUR_INFO_WEB_VIEW_BASE_URL + tourInfoItem.galTitle)
-                )
-                ContextCompat.startActivity(
-                    tourInfoItemContext,
-                    tourInfoItemBrowserIntent,
-                    null
-                )
+//                val tourInfoItemBrowserIntent = Intent(
+//                    Intent.ACTION_VIEW,
+//                    Uri.parse(TOUR_INFO_WEB_VIEW_BASE_URL + tourInfoItem.galTitle)
+//                )
+//                ContextCompat.startActivity(
+//                    tourInfoItemContext,
+//                    tourInfoItemBrowserIntent,
+//                    null
+//                )
+                showByWebView = true
             }
     ) {
         Image(
@@ -101,6 +105,9 @@ fun LazyVerticalStaggeredGridItem(
             modifier = Modifier.align(Alignment.Center)
         )
     }
+
+    // 새 창으로 띄우기 (네비게이션)
+    if(showByWebView) WebViewScreen()
 }
 
 @Composable
