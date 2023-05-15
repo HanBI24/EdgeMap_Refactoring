@@ -1,7 +1,7 @@
 package com.example.navigation
 
 import com.example.common.Constants.PASS_SEARCH_WORD
-import com.example.common.Constants.PASS_TOUR_IMAGE_URL
+import com.example.common.Constants.PASS_WEB_VIEW_URL
 
 
 sealed class BottomNavScreen(val route: String){
@@ -13,9 +13,9 @@ sealed class BottomNavScreen(val route: String){
             return "search_result/$word"
         }
     }
-    object WebView: BottomNavScreen(route = "webview/{$PASS_TOUR_IMAGE_URL}") {
+    object WebView: BottomNavScreen(route = "web_view/{$PASS_WEB_VIEW_URL}") {
         fun passTourImageUrl(url: String): String {
-            return "webview/$url"
+            return "web_view/$url"
         }
     }
 }

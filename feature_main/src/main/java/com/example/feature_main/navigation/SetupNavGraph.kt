@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.common.Constants.PASS_SEARCH_WORD
-import com.example.common.Constants.PASS_TOUR_IMAGE_URL
+import com.example.common.Constants.PASS_WEB_VIEW_URL
 import com.example.feature_favorite.FavoriteScreen
 import com.example.feature_main.MainScreen
 import com.example.feature_search.SearchScreen
@@ -42,11 +42,11 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable(
             route = BottomNavScreen.WebView.route,
-            arguments = listOf(navArgument(PASS_TOUR_IMAGE_URL) {
+            arguments = listOf(navArgument(PASS_WEB_VIEW_URL) {
                 type = NavType.StringType
             })
         ) {
-            WebViewScreen(it.arguments?.getString(PASS_TOUR_IMAGE_URL) ?: "")
+            WebViewScreen(it.arguments?.getString(PASS_WEB_VIEW_URL) ?: "")
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.example.feature_search
 
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,19 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
-import com.example.common.Constants.TOUR_INFO_WEB_VIEW_BASE_URL
+import com.example.common.Constants.WEB_VIEW_SEARCH_BASE_URL
 import com.example.domain.model.TourInfoItem
 import com.example.navigation.BottomNavScreen
-import com.example.webview.WebViewScreen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
@@ -86,7 +81,7 @@ fun LazyVerticalStaggeredGridItem(
 //        placeholder(R.drawable.ic_error)
         error(R.drawable.ic_error)
     }
-    val tourInfoItemContext = LocalContext.current
+//    val tourInfoItemContext = LocalContext.current
 
     Box(
         modifier = modifier
@@ -102,7 +97,7 @@ fun LazyVerticalStaggeredGridItem(
 //                    null
 //                )
                 val url = URLEncoder.encode(
-                    TOUR_INFO_WEB_VIEW_BASE_URL + tourInfoItem.galTitle,
+                    WEB_VIEW_SEARCH_BASE_URL + tourInfoItem.galTitle,
                     StandardCharsets.UTF_8.toString()
                 )
                 navController.navigate(
