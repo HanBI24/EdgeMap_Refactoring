@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import coil.annotation.ExperimentalCoilApi
@@ -26,21 +27,26 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.example.common.Constants.TOUR_INFO_WEB_VIEW_BASE_URL
 import com.example.domain.model.TourInfoItem
+import com.example.navigation.BottomNavScreen
 import com.example.webview.WebViewScreen
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @ExperimentalFoundationApi
 @Composable
 fun SearchTourList(
-    tourInfo: LazyPagingItems<TourInfoItem>
+    tourInfo: LazyPagingItems<TourInfoItem>,
+    navController: NavHostController
 ) {
-    LazyStaggeredGrid(tourInfo)
+    LazyStaggeredGrid(tourInfo, navController)
 }
 
 @OptIn(ExperimentalCoilApi::class)
 @ExperimentalFoundationApi
 @Composable
 fun LazyStaggeredGrid(
-    tourInfo: LazyPagingItems<TourInfoItem>
+    tourInfo: LazyPagingItems<TourInfoItem>,
+    navController: NavHostController
 ) {
     val cellConfiguration =
         if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -58,7 +64,8 @@ fun LazyStaggeredGrid(
             items(tourInfo.itemCount) { index ->
                 tourInfo[index]?.let {
                     LazyVerticalStaggeredGridItem(
-                        tourInfoItem = it
+                        tourInfoItem = it,
+                        navController = navController
                     )
                 }
             }
@@ -71,7 +78,8 @@ fun LazyStaggeredGrid(
 @Composable
 fun LazyVerticalStaggeredGridItem(
     modifier: Modifier = Modifier,
-    tourInfoItem: TourInfoItem
+    tourInfoItem: TourInfoItem,
+    navController: NavHostController
 ) {
     val painter = rememberImagePainter(data = tourInfoItem.galWebImageUrl) {
         crossfade(1000)
@@ -79,8 +87,6 @@ fun LazyVerticalStaggeredGridItem(
         error(R.drawable.ic_error)
     }
     val tourInfoItemContext = LocalContext.current
-    var showByWebView by remember { mutableStateOf(false) }
-
 
     Box(
         modifier = modifier
@@ -95,7 +101,13 @@ fun LazyVerticalStaggeredGridItem(
 //                    tourInfoItemBrowserIntent,
 //                    null
 //                )
-                showByWebView = true
+                val url = URLEncoder.encode(
+                    TOUR_INFO_WEB_VIEW_BASE_URL + tourInfoItem.galTitle,
+                    StandardCharsets.UTF_8.toString()
+                )
+                navController.navigate(
+                    route = BottomNavScreen.WebView.passTourImageUrl(url)
+                )
             }
     ) {
         Image(
@@ -105,9 +117,6 @@ fun LazyVerticalStaggeredGridItem(
             modifier = Modifier.align(Alignment.Center)
         )
     }
-
-    // 새 창으로 띄우기 (네비게이션)
-    if(showByWebView) WebViewScreen()
 }
 
 @Composable

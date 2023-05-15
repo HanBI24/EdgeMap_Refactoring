@@ -58,7 +58,7 @@ fun SearchScreen(
                 )
             }
         }
-        SearchTourList(tourInfoItem)
+        SearchTourList(tourInfoItem, navController)
     }
 }
 

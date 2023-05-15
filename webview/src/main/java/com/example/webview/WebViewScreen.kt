@@ -5,9 +5,9 @@ import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 
 @Composable
-fun WebViewScreen() {
+fun WebViewScreen(url: String) {
     val webViewState = rememberWebViewState(
-            url = "www.naver.com",
+            url = url,
             additionalHttpHeaders = emptyMap()
         )
     WebView(state = webViewState)
