@@ -77,4 +77,8 @@ dependencies {
     // Paging 3.0
     implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 
+    // Material 3
+    implementation("androidx.compose.material3:material3:1.1.0")
+    implementation("androidx.compose.material3:material3-window-size-class:1.1.0")
+
 }

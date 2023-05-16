@@ -29,6 +29,10 @@ class SearchScreenViewModel @Inject constructor(
         _searchWord.value = searchWord
     }
 
+    fun makeSearchWordEmpty() {
+        _searchWord.value = ""
+    }
+
     init {
         _tourInfoState.value = tourInfoState.value.copy(
             toruInfoItem = Pager(PagingConfig(pageSize = ITEM_PER_PAGE)) {

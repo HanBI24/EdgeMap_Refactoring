@@ -1,21 +1,25 @@
 package com.example.feature_search
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarColors
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -51,7 +55,7 @@ fun SearchScreen(
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                SearchTextField(
+                SearchBarField(
                     searchWord,
                     searchScreenViewModel,
                     navController
@@ -59,6 +63,69 @@ fun SearchScreen(
             }
         }
         SearchTourList(tourInfoItem, navController)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchBarField(
+    searchWord: String,
+    searchScreenViewModel: SearchScreenViewModel,
+    navController: NavHostController
+) {
+    var active by remember { mutableStateOf(false) }
+    // Room 으로 저장
+    val searchWordList = remember { mutableStateListOf("최근 검색어") }
+
+    SearchBar(
+        modifier = Modifier.fillMaxWidth(),
+        query = searchWord,
+        onQueryChange = searchScreenViewModel::onSearchWordChanged,
+        active = active,
+        colors = SearchBarDefaults.colors(
+            containerColor = Color.DarkGray,
+            dividerColor = Color.LightGray
+        ),
+        onActiveChange = { active = it },
+        placeholder = { Text("목적지를 입력하세요.") },
+        onSearch = {
+            if (searchWord.isEmpty()) return@SearchBar
+            searchWordList.add(it)
+            active = false
+            navController.navigate(
+                route = BottomNavScreen.SearchResult.passSearchWord(searchWord)
+            )
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = "Search Icon"
+            )
+        },
+        trailingIcon = {
+            if (active) {
+                Icon(
+                    modifier = Modifier.clickable {
+                        if (searchWord.isNotEmpty())
+                            searchScreenViewModel.makeSearchWordEmpty()
+                        else active = false
+                    },
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Close Icon"
+                )
+            }
+        }
+    ) {
+        searchWordList.forEach {
+            Row(modifier = Modifier.padding(14.dp)) {
+                Icon(
+                    modifier = Modifier.padding(end = 10.dp),
+                    imageVector = Icons.Default.Refresh,
+                    contentDescription = "History Icon"
+                )
+                Text(text = it)
+            }
+        }
     }
 }
 
@@ -87,7 +154,7 @@ fun SearchTextField(
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
-                if(searchWord.isBlank()) return@KeyboardActions
+                if (searchWord.isEmpty()) return@KeyboardActions
                 navController.navigate(
                     route = BottomNavScreen.SearchResult.passSearchWord(searchWord)
                 )
