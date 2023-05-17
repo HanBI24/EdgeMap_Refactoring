@@ -22,7 +22,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.example.common.Constants.WEB_VIEW_SEARCH_BASE_URL
-import com.example.domain.model.TourInfoItem
+import com.example.domain.model.remote.TourInfoItem
 import com.example.navigation.BottomNavScreen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets

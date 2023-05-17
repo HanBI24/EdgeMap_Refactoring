@@ -9,7 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.common.Constants.ITEM_PER_PAGE
 import com.example.data.paging.TourInfoPagingSource
-import com.example.domain.repository.TourInfoRepository
+import com.example.domain.repository.remote.TourInfoRepository
 import com.example.presentation.state.TourInfoState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -4,8 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.common.Constants.ITEM_PER_PAGE
 import com.example.common.Constants.PREV_NEXT_ITEM_PAGE
-import com.example.domain.model.TourInfoItem
-import com.example.domain.repository.TourInfoRepository
+import com.example.domain.model.remote.TourInfoItem
+import com.example.domain.repository.remote.TourInfoRepository
 
 class TourInfoPagingSource constructor(
     private val tourInfoRepository: TourInfoRepository

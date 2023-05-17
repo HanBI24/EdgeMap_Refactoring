@@ -3,7 +3,7 @@ package com.example.presentation.di
 import com.example.common.Constants.TOUR_BASE_URL
 import com.example.data.remote.api.TourInfoApi
 import com.example.data.repository.TourInfoRepositoryInfoImpl
-import com.example.domain.repository.TourInfoRepository
+import com.example.domain.repository.remote.TourInfoRepository
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

@@ -2,8 +2,8 @@ package com.example.data.repository
 
 import com.example.data.mapper.Mapper.toTourInfoItem
 import com.example.data.remote.api.TourInfoApi
-import com.example.domain.model.TourInfoItem
-import com.example.domain.repository.TourInfoRepository
+import com.example.domain.model.remote.TourInfoItem
+import com.example.domain.repository.remote.TourInfoRepository
 import javax.inject.Inject
 
 class TourInfoRepositoryInfoImpl @Inject constructor(

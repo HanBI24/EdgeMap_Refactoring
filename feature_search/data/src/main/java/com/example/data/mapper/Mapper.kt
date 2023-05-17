@@ -1,7 +1,7 @@
 package com.example.data.mapper
 
 import com.example.data.remote.dto.Item
-import com.example.domain.model.TourInfoItem
+import com.example.domain.model.remote.TourInfoItem
 
 object Mapper {
     fun Item.toTourInfoItem(): TourInfoItem {
