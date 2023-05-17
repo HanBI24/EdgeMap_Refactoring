@@ -95,10 +95,10 @@ fun SearchBarField(
         placeholder = { Text("목적지를 입력하세요.") },
         onSearch = {
             if (searchWord.isEmpty()) return@SearchBar
-            scope.launch {
-                searchScreenViewModel.insertSearchWord(it)
-            }
             active = false
+            scope.launch {
+                searchScreenViewModel.insertSearchWord(searchWord)
+            }
             navController.navigate(
                 route = BottomNavScreen.SearchResult.passSearchWord(searchWord)
             )
@@ -124,7 +124,19 @@ fun SearchBarField(
         }
     ) {
         searchWordList.forEach {
-            Row(modifier = Modifier.padding(14.dp)) {
+            Row(
+                modifier = Modifier
+                    .padding(14.dp)
+                    .fillMaxWidth()
+                    .clickable {
+                        scope.launch {
+                            searchScreenViewModel.insertSearchWord(it.searchWord)
+                        }
+                        navController.navigate(
+                            route = BottomNavScreen.SearchResult.passSearchWord(it.searchWord)
+                        )
+                    }
+            ) {
                 Icon(
                     modifier = Modifier.padding(end = 10.dp),
                     imageVector = Icons.Default.Refresh,
