@@ -1,9 +1,20 @@
 package com.example.data.mapper
 
+import com.example.data.local.entity.SearchWordEntity
 import com.example.data.remote.dto.Item
+import com.example.domain.model.local.SearchWordItem
 import com.example.domain.model.remote.TourInfoItem
 
 object Mapper {
+
+    fun SearchWordEntity.toSearchWordItem(): SearchWordItem {
+        return SearchWordItem(searchWord = searchWord)
+    }
+
+    fun SearchWordItem.toSearchWordEntity(searchWord: String): SearchWordEntity {
+        return SearchWordEntity(searchWord = searchWord)
+    }
+
     fun Item.toTourInfoItem(): TourInfoItem {
         return TourInfoItem(
             galTitle = galTitle,

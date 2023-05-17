@@ -1,4 +1,4 @@
-package com.example.data.repository
+package com.example.data.repository.remote
 
 import com.example.data.mapper.Mapper.toTourInfoItem
 import com.example.data.remote.api.TourInfoApi
