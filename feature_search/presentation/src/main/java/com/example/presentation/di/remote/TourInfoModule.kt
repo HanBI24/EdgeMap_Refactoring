@@ -1,4 +1,4 @@
-package com.example.presentation.di
+package com.example.presentation.di.remote
 
 import com.example.common.Constants.TOUR_BASE_URL
 import com.example.data.remote.api.TourInfoApi
@@ -19,14 +19,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object TourInfoModule {
-
-    @Provides
-    @Singleton
-    fun provideTourInfoRepository(
-        tourInfoApi: TourInfoApi
-    ): TourInfoRepository {
-        return TourInfoRepositoryInfoImpl(tourInfoApi)
-    }
 
     @Provides
     @Singleton
