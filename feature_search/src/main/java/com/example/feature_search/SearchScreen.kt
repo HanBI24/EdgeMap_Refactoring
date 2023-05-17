@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.domain.model.local.SearchWordItem
 import com.example.navigation.BottomNavScreen
 import com.example.presentation.viewmodel.SearchScreenViewModel
+import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @Composable
@@ -39,6 +41,8 @@ fun SearchScreen(
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
     val tourInfoItem =
         searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
+    val searchWordList =
+        searchScreenViewModel.getAllSearchWord().collectAsState(initial = listOf()).value
     val searchWord = searchScreenViewModel.searchWord.value
     val focusManager = LocalFocusManager.current
 
@@ -58,7 +62,8 @@ fun SearchScreen(
                 SearchBarField(
                     searchWord,
                     searchScreenViewModel,
-                    navController
+                    navController,
+                    searchWordList
                 )
             }
         }
@@ -71,11 +76,11 @@ fun SearchScreen(
 fun SearchBarField(
     searchWord: String,
     searchScreenViewModel: SearchScreenViewModel,
-    navController: NavHostController
+    navController: NavHostController,
+    searchWordList: List<SearchWordItem>
 ) {
     var active by remember { mutableStateOf(false) }
-    // Room 으로 저장
-    val searchWordList = remember { mutableStateListOf("최근 검색어") }
+    val scope = rememberCoroutineScope()
 
     SearchBar(
         modifier = Modifier.fillMaxWidth(),
@@ -90,7 +95,9 @@ fun SearchBarField(
         placeholder = { Text("목적지를 입력하세요.") },
         onSearch = {
             if (searchWord.isEmpty()) return@SearchBar
-            searchWordList.add(it)
+            scope.launch {
+                searchScreenViewModel.insertSearchWord(it)
+            }
             active = false
             navController.navigate(
                 route = BottomNavScreen.SearchResult.passSearchWord(searchWord)
@@ -123,7 +130,7 @@ fun SearchBarField(
                     imageVector = Icons.Default.Refresh,
                     contentDescription = "History Icon"
                 )
-                Text(text = it)
+                Text(text = it.searchWord)
             }
         }
     }
