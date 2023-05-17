@@ -9,14 +9,18 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.common.Constants.ITEM_PER_PAGE
 import com.example.data.paging.TourInfoPagingSource
+import com.example.domain.model.local.SearchWordItem
+import com.example.domain.repository.local.SearchWordRepository
 import com.example.domain.repository.remote.TourInfoRepository
 import com.example.presentation.state.TourInfoState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val tourInfoRepository: TourInfoRepository
+    private val tourInfoRepository: TourInfoRepository,
+    private val searchWordRepository: SearchWordRepository
 ) : ViewModel() {
 
     private val _tourInfoState = mutableStateOf(TourInfoState())
@@ -31,6 +35,16 @@ class SearchScreenViewModel @Inject constructor(
 
     fun makeSearchWordEmpty() {
         _searchWord.value = ""
+    }
+
+    fun getAllSearchWord() = searchWordRepository.getAllSearchWord()
+
+    suspend fun insertSearchWord(searchWord: String) {
+        viewModelScope.launch {
+            searchWordRepository.insertSearchWord(
+                SearchWordItem(searchWord)
+            )
+        }
     }
 
     init {
