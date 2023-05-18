@@ -47,6 +47,14 @@ class SearchScreenViewModel @Inject constructor(
         }
     }
 
+    suspend fun deleteSearchWord(searchWord: String) {
+        viewModelScope.launch {
+            searchWordRepository.deleteSearchWord(
+                SearchWordItem(searchWord)
+            )
+        }
+    }
+
     init {
         _tourInfoState.value = tourInfoState.value.copy(
             toruInfoItem = Pager(PagingConfig(pageSize = ITEM_PER_PAGE)) {

@@ -147,8 +147,11 @@ fun SearchBarField(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                            //터치 안먹힘
                         .clickable {
-
+                            scope.launch {
+                                searchScreenViewModel.deleteSearchWord(it.searchWord)
+                            }
                         },
                     horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically

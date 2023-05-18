@@ -26,4 +26,12 @@ class SearchWordRepositoryImpl @Inject constructor(
             )
         )
     }
+
+    override suspend fun deleteSearchWord(searchWordItem: SearchWordItem) {
+        searchWordDao.deleteSearchWord(
+            searchWord = searchWordItem.toSearchWordEntity(
+                searchWordItem.searchWord
+            )
+        )
+    }
 }
