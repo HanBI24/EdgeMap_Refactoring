@@ -128,7 +128,7 @@ fun SearchBarField(
             Row(
                 modifier = Modifier
                     .padding(14.dp)
-                    .fillMaxWidth()
+                    .weight(1f)
                     .clickable {
                         scope.launch {
                             searchScreenViewModel.insertSearchWord(it.searchWord)
@@ -144,17 +144,14 @@ fun SearchBarField(
                     contentDescription = "History Icon"
                 )
                 Text(text = it.searchWord)
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                            //터치 안먹힘
-                        .clickable {
-                            scope.launch {
-                                searchScreenViewModel.deleteSearchWord(it.searchWord)
-                            }
-                        },
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
+                IconButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    onClick = {
+                        scope.launch {
+                            println("awef")
+                            searchScreenViewModel.deleteSearchWord(it)
+                        }
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,

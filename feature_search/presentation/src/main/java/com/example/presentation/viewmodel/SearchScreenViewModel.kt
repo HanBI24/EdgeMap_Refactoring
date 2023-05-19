@@ -47,10 +47,10 @@ class SearchScreenViewModel @Inject constructor(
         }
     }
 
-    suspend fun deleteSearchWord(searchWord: String) {
+    suspend fun deleteSearchWord(searchWord: SearchWordItem) {
         viewModelScope.launch {
             searchWordRepository.deleteSearchWord(
-                SearchWordItem(searchWord)
+                searchWord
             )
         }
     }
