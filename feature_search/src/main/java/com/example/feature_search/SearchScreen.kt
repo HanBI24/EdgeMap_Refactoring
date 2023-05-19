@@ -40,8 +40,8 @@ fun SearchScreen(
     navController: NavHostController
 ) {
     val searchScreenViewModel = hiltViewModel<SearchScreenViewModel>()
-    val tourInfoItem =
-        searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
+//    val tourInfoItem =
+//        searchScreenViewModel.tourInfoState.value.toruInfoItem.collectAsLazyPagingItems()
     val searchWordList =
         searchScreenViewModel.getAllSearchWord().collectAsState(initial = listOf()).value
     val searchWord = searchScreenViewModel.searchWord.value
