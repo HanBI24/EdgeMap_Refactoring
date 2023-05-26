@@ -14,9 +14,9 @@
 * Hilt
 * Retrofit
 * Kotlinx Serialization (now Gson)
-* Room
 * Kotlinx Serialization
 * Room  
+* Navigation
 * Coil
 * Naver API (Map, Direction 5, GeoCoding, Reverse GeoCoding, Search)
 * Tour API (Tour Photo)  
