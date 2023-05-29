@@ -148,7 +148,6 @@ fun SearchBarField(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     onClick = {
                         scope.launch {
-                            println("awef")
                             searchScreenViewModel.deleteSearchWord(it)
                         }
                     }

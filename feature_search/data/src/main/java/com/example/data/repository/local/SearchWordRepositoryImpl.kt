@@ -31,7 +31,7 @@ class SearchWordRepositoryImpl @Inject constructor(
         searchWordDao.deleteSearchWord(
             searchWord = searchWordItem.toSearchWordEntity(
                 searchWordItem.searchWord
-            )
+            ).searchWord
         )
     }
 }
