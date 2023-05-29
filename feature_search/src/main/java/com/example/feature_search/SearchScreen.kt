@@ -1,5 +1,6 @@
 package com.example.feature_search
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -127,25 +128,31 @@ fun SearchBarField(
         searchWordList.forEach {
             Row(
                 modifier = Modifier
-                    .padding(14.dp)
-                    .weight(1f)
-                    .clickable {
-                        scope.launch {
-                            searchScreenViewModel.insertSearchWord(it.searchWord)
-                        }
-                        navController.navigate(
-                            route = BottomNavScreen.SearchResult.passSearchWord(it.searchWord)
-                        )
-                    }
+                    .fillMaxWidth()
+                    .padding(14.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    modifier = Modifier.padding(end = 10.dp),
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = "History Icon"
-                )
-                Text(text = it.searchWord)
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            scope.launch {
+                                searchScreenViewModel.insertSearchWord(it.searchWord)
+                            }
+                            navController.navigate(
+                                route = BottomNavScreen.SearchResult.passSearchWord(it.searchWord)
+                            )
+                        },
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        modifier = Modifier.padding(end = 10.dp),
+                        imageVector = Icons.Default.Refresh,
+                        contentDescription = "History Icon"
+                    )
+                    Text(text = it.searchWord)
+                }
                 IconButton(
-                    modifier = Modifier.align(Alignment.CenterVertically),
                     onClick = {
                         scope.launch {
                             searchScreenViewModel.deleteSearchWord(it)
