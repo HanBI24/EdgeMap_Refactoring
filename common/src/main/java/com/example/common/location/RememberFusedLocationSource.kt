@@ -22,7 +22,7 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 @ExperimentalNaverMapApi
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-public fun rememberFusedLocationSource(): LocationSource {
+fun rememberFusedLocationSource(): LocationSource {
     val permissionsState = rememberMultiplePermissionsState(
         listOf(
             Manifest.permission.ACCESS_FINE_LOCATION,

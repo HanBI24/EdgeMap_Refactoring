@@ -3,16 +3,25 @@ package com.example.feature_search_result
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.common.location.rememberFusedLocationSource
+import com.naver.maps.map.compose.ExperimentalNaverMapApi
 
+@OptIn(ExperimentalNaverMapApi::class)
 @Composable
-fun SearchResultScreen(searchWord: String) {
+fun SearchResultScreen(searchWord: String = "서울") {
+    var currentLocation by remember { mutableStateOf("") }
+
+    rememberFusedLocationSource().activate {
+        currentLocation = "${it?.latitude},${it?.longitude}"
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = searchWord
+            text = currentLocation
         )
     }
 }

@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":common"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -57,4 +58,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.6.0-alpha08")
 
     implementation("androidx.compose.foundation:foundation:1.3.0")
+
+    // Naver Map
+    implementation("io.github.fornewid:naver-map-compose:1.2.3")
+    implementation("com.naver.maps:map-sdk:3.16.1")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }
