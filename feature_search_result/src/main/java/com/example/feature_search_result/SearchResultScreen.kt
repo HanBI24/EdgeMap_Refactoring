@@ -12,10 +12,16 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun SearchResultScreen(searchWord: String = "서울") {
-    var currentLocation by remember { mutableStateOf("") }
+    var isFinished by remember { mutableStateOf(false) }
+    var currentLocation = ""
 
-    rememberFusedLocationSource().activate {
-        currentLocation = "${it?.latitude},${it?.longitude}"
+    rememberFusedLocationSource().apply {
+        activate {
+            currentLocation = "${it?.latitude},${it?.longitude}"
+            println("awef curr: $currentLocation")
+            if(currentLocation != "") isFinished = true
+        }
+        if(isFinished) deactivate()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
