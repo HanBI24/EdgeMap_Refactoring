@@ -15,13 +15,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        buildConfigField("String", "Client_ID", gradleLocalProperties(
-            rootDir
-        ).getProperty("Client_ID"))
-        buildConfigField("String", "Client_Secret", gradleLocalProperties(
-            rootDir
-        ).getProperty("Client_Secret"))
     }
 
 

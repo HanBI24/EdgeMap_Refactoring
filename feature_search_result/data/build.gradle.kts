@@ -15,6 +15,13 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "Client_ID", com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+            rootDir
+        ).getProperty("Client_ID"))
+        buildConfigField("String", "Client_Secret", com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+            rootDir
+        ).getProperty("Client_Secret"))
     }
 
     buildTypes {
