@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -13,7 +15,15 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "Client_ID", gradleLocalProperties(
+            rootDir
+        ).getProperty("Client_ID"))
+        buildConfigField("String", "Client_Secret", gradleLocalProperties(
+            rootDir
+        ).getProperty("Client_Secret"))
     }
+
 
     buildTypes {
         release {
