@@ -6,14 +6,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.common.location.rememberFusedLocationSource
+import com.example.presentation.viewmodel.SearchResultViewModel
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
-fun SearchResultScreen(searchWord: String = "서울") {
+fun SearchResultScreen(searchPlaceWord: String = "속초") {
     var currentLocation by remember { mutableStateOf("") }
     var isFinished by remember { mutableStateOf(false) }
+    val searchResultViewModel = hiltViewModel<SearchResultViewModel>()
+    val geoCodeState = searchResultViewModel.geoCodeState.value
+
 
     rememberFusedLocationSource().apply {
         activate {
@@ -23,10 +28,12 @@ fun SearchResultScreen(searchWord: String = "서울") {
         if(isFinished) deactivate()
     }
 
+    searchResultViewModel.getGeoCode(searchPlaceWord)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = currentLocation
+            text = "${geoCodeState.lng}, ${geoCodeState.lat}"
         )
     }
 }

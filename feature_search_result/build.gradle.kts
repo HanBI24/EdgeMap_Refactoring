@@ -3,6 +3,8 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -44,6 +46,8 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":feature_search_result:domain"))
+    implementation(project(":feature_search_result:presentation"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -66,4 +70,11 @@ dependencies {
     implementation("io.github.fornewid:naver-map-compose:1.2.3")
     implementation("com.naver.maps:map-sdk:3.16.1")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.43")
+    kapt("com.google.dagger:hilt-android-compiler:2.43")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-rc01")
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
 }
