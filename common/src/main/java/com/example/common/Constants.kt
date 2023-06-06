@@ -4,6 +4,7 @@ object Constants {
     // BASE URL
     const val TOUR_BASE_URL = "https://apis.data.go.kr"
     const val WEB_VIEW_SEARCH_BASE_URL = "https://search.naver.com/search.naver?query="
+    const val GEO_CODE_BASE_URL = "https://naveropenapi.apigw.ntruss.com"
 
     // Paging
     const val ITEM_PER_PAGE = 30

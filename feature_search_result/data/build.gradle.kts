@@ -36,6 +36,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":common"))
+    implementation(project(":feature_search_result:domain"))
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
