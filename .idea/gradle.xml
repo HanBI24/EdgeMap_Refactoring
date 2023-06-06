@@ -22,6 +22,9 @@
             <option value="$PROJECT_DIR$/feature_search/domain" />
             <option value="$PROJECT_DIR$/feature_search/presentation" />
             <option value="$PROJECT_DIR$/feature_search_result" />
+            <option value="$PROJECT_DIR$/feature_search_result/data" />
+            <option value="$PROJECT_DIR$/feature_search_result/domain" />
+            <option value="$PROJECT_DIR$/feature_search_result/presentation" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
