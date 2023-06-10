@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.presentation"
+    namespace = "com.example.presentation.feature_search"
     compileSdk = 32
 
     defaultConfig {

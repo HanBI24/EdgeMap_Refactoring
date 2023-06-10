@@ -1,6 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.data.BuildConfig
+import com.example.data.feature_search.BuildConfig
 import com.example.data.remote.dto.TourInfoDto
 import retrofit2.http.GET
 import retrofit2.http.Query

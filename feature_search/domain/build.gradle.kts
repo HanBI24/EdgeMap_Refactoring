@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.domain"
+    namespace = "com.example.domain.feature_search"
     compileSdk = 32
 
     defaultConfig {

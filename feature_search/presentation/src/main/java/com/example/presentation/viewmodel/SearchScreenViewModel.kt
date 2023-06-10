@@ -8,6 +8,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.common.Constants.ITEM_PER_PAGE
+import com.example.common.di.RetrofitAnnotationClass
 import com.example.data.paging.TourInfoPagingSource
 import com.example.domain.model.local.SearchWordItem
 import com.example.domain.repository.local.SearchWordRepository
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val tourInfoRepository: TourInfoRepository,
+    @RetrofitAnnotationClass.TourInfoType private val tourInfoRepository: TourInfoRepository,
     private val searchWordRepository: SearchWordRepository
 ) : ViewModel() {
 

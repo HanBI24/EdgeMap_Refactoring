@@ -1,6 +1,7 @@
 package com.example.presentation.di.remote
 
 import com.example.common.Constants.TOUR_BASE_URL
+import com.example.common.di.RetrofitAnnotationClass
 import com.example.data.remote.api.TourInfoApi
 import com.example.data.repository.remote.TourInfoRepositoryInfoImpl
 import com.example.domain.repository.remote.TourInfoRepository
@@ -20,30 +21,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object TourInfoModule {
 
-    @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        return httpLoggingInterceptor
-    }
-
-    @Provides
-    @Singleton
-    fun provideHttpClient(
-        interceptor: HttpLoggingInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
-            .build()
-    }
-
     private val gson = GsonBuilder().setLenient().create()
 
     @Provides
     @Singleton
+    @RetrofitAnnotationClass.TourInfoType
     fun provideRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit {
@@ -56,8 +38,9 @@ object TourInfoModule {
 
     @Provides
     @Singleton
+    @RetrofitAnnotationClass.TourInfoType
     fun provideTourInfoApi(
-        retrofit: Retrofit
+        @RetrofitAnnotationClass.TourInfoType retrofit: Retrofit
     ): TourInfoApi {
         return retrofit.create(TourInfoApi::class.java)
     }

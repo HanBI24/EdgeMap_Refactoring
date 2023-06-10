@@ -28,7 +28,7 @@ fun SearchResultScreen(searchPlaceWord: String = "속초") {
         if(isFinished) deactivate()
     }
 
-    searchResultViewModel.getGeoCode(searchPlaceWord)
+    searchResultViewModel.getGeoCode("속초")
 
     Box(modifier = Modifier.fillMaxSize()) {
         Text(

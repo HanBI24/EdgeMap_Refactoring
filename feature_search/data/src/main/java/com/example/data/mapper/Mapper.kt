@@ -1,4 +1,4 @@
-package com.example.data.mapper
+package com.example.data.mapper.feature_search
 
 import com.example.data.local.entity.SearchWordEntity
 import com.example.data.remote.dto.Item

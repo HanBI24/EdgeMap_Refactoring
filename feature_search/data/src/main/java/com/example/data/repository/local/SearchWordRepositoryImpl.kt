@@ -1,8 +1,8 @@
 package com.example.data.repository.local
 
 import com.example.data.local.SearchWordDao
-import com.example.data.mapper.Mapper.toSearchWordEntity
-import com.example.data.mapper.Mapper.toSearchWordItem
+import com.example.data.mapper.feature_search.Mapper.toSearchWordEntity
+import com.example.data.mapper.feature_search.Mapper.toSearchWordItem
 import com.example.domain.model.local.SearchWordItem
 import com.example.domain.repository.local.SearchWordRepository
 import kotlinx.coroutines.flow.Flow

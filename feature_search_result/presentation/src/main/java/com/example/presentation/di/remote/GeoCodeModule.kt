@@ -1,6 +1,7 @@
 package com.example.presentation.di.remote
 
 import com.example.common.Constants.GEO_CODE_BASE_URL
+import com.example.common.di.RetrofitAnnotationClass
 import com.example.data.remote.api.GeoCodeApi
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,30 +19,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object GeoCodeModule {
 
-    @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        return httpLoggingInterceptor
-    }
-
-    @Provides
-    @Singleton
-    fun provideHttpClient(
-        interceptor: HttpLoggingInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
-            .build()
-    }
-
     private val gson = GsonBuilder().setLenient().create()
 
     @Provides
     @Singleton
+    @RetrofitAnnotationClass.GeoCodeType
     fun provideRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit {
@@ -54,8 +36,9 @@ object GeoCodeModule {
 
     @Provides
     @Singleton
+    @RetrofitAnnotationClass.GeoCodeType
     fun provideGeoCodeApi(
-        retrofit: Retrofit
+        @RetrofitAnnotationClass.GeoCodeType retrofit: Retrofit
     ): GeoCodeApi {
         return retrofit.create(GeoCodeApi::class.java)
     }
