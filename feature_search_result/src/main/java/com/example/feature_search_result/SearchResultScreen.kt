@@ -14,26 +14,28 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun SearchResultScreen(searchPlaceWord: String = "속초") {
-    var currentLocation by remember { mutableStateOf("") }
+    var currentLocationLatLng by remember { mutableStateOf("") }
     var isFinished by remember { mutableStateOf(false) }
     val searchResultViewModel = hiltViewModel<SearchResultViewModel>()
-    val geoCodeState = searchResultViewModel.geoCodeState.value
-
 
     rememberFusedLocationSource().apply {
         activate {
-            currentLocation = "${it?.latitude},${it?.longitude}"
+            currentLocationLatLng = "${it?.latitude},${it?.longitude}"
             isFinished = true
         }
         if(isFinished) deactivate()
     }
 
-    searchResultViewModel.getGeoCode("속초")
+    LaunchedEffect(true) {
+        searchResultViewModel
+            .startFindingRouteAndLocation("강릉", currentLocationLatLng)
+    }
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "${geoCodeState.lng}, ${geoCodeState.lat}"
+            text = ""
         )
     }
 }
