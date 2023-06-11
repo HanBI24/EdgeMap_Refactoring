@@ -1,7 +1,7 @@
 package com.example.presentation.di.remote
 
 import com.example.common.Constants.GEO_CODE_BASE_URL
-import com.example.common.di.RetrofitAnnotationClass
+import com.example.common.di.GeoCodeType
 import com.example.data.remote.api.GeoCodeApi
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -9,10 +9,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -23,7 +21,7 @@ object GeoCodeModule {
 
     @Provides
     @Singleton
-    @RetrofitAnnotationClass.GeoCodeType
+    @GeoCodeType
     fun provideRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit {
@@ -36,9 +34,9 @@ object GeoCodeModule {
 
     @Provides
     @Singleton
-    @RetrofitAnnotationClass.GeoCodeType
+    @GeoCodeType
     fun provideGeoCodeApi(
-        @RetrofitAnnotationClass.GeoCodeType retrofit: Retrofit
+        @GeoCodeType retrofit: Retrofit
     ): GeoCodeApi {
         return retrofit.create(GeoCodeApi::class.java)
     }

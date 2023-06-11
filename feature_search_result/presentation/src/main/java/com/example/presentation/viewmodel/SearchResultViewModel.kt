@@ -4,7 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.common.di.RetrofitAnnotationClass
 import com.example.domain.model.GeoCodeItem
 import com.example.domain.repository.GetGeoCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

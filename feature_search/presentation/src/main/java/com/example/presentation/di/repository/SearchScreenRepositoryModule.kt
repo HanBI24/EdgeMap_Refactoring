@@ -1,6 +1,6 @@
 package com.example.presentation.di.repository
 
-import com.example.common.di.RetrofitAnnotationClass
+import com.example.common.di.TourInfoType
 import com.example.data.local.SearchWordDao
 import com.example.data.remote.api.TourInfoApi
 import com.example.data.repository.local.SearchWordRepositoryImpl
@@ -20,7 +20,7 @@ object SearchScreenRepositoryModule {
     @Provides
     @Singleton
     fun provideTourInfoRepository(
-        @RetrofitAnnotationClass.TourInfoType tourInfoApi: TourInfoApi
+        @TourInfoType tourInfoApi: TourInfoApi
     ): TourInfoRepository {
         return TourInfoRepositoryInfoImpl(tourInfoApi)
     }

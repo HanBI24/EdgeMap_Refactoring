@@ -1,6 +1,6 @@
 package com.example.presentation.di.repository
 
-import com.example.common.di.RetrofitAnnotationClass
+import com.example.common.di.GeoCodeType
 import com.example.data.remote.api.GeoCodeApi
 import com.example.data.repository.GetGeoCodeRepositoryImpl
 import com.example.domain.repository.GetGeoCodeRepository
@@ -17,7 +17,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideGeoCodeRepository(
-        @RetrofitAnnotationClass.GeoCodeType geoCodeApi: GeoCodeApi
+        @GeoCodeType geoCodeApi: GeoCodeApi
     ): GetGeoCodeRepository {
         return GetGeoCodeRepositoryImpl(geoCodeApi)
     }
