@@ -21,7 +21,7 @@ import com.example.webview.WebViewScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavScreen.SearchResult.route
+        startDestination = BottomNavScreen.Home.route
     ) {
         composable(route = BottomNavScreen.Home.route) {
             MainScreen(navController = navController)

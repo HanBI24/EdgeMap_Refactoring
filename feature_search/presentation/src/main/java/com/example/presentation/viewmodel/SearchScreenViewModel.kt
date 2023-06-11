@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    @RetrofitAnnotationClass.TourInfoType private val tourInfoRepository: TourInfoRepository,
+    private val tourInfoRepository: TourInfoRepository,
     private val searchWordRepository: SearchWordRepository
 ) : ViewModel() {
 

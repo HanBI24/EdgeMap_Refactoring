@@ -19,7 +19,6 @@ object SearchScreenRepositoryModule {
 
     @Provides
     @Singleton
-    @RetrofitAnnotationClass.TourInfoType
     fun provideTourInfoRepository(
         @RetrofitAnnotationClass.TourInfoType tourInfoApi: TourInfoApi
     ): TourInfoRepository {

@@ -16,7 +16,6 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    @RetrofitAnnotationClass.GeoCodeType
     fun provideGeoCodeRepository(
         @RetrofitAnnotationClass.GeoCodeType geoCodeApi: GeoCodeApi
     ): GetGeoCodeRepository {

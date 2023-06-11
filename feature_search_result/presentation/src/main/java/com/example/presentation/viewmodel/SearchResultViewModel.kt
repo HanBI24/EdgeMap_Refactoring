@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchResultViewModel @Inject constructor(
-    @RetrofitAnnotationClass.GeoCodeType private val getGeoCodeRepository: GetGeoCodeRepository
+    private val getGeoCodeRepository: GetGeoCodeRepository
 ) : ViewModel() {
 
     private val _geoCodeState = mutableStateOf(GeoCodeItem("", ""))
