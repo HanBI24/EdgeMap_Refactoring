@@ -36,11 +36,10 @@ class SearchResultViewModel @Inject constructor(
     }
 
     private fun getRoute(curGeoCode: String, goalGeoCode: String) {
-
+        println("awef vm $curGeoCode, $goalGeoCode")
     }
 
     private fun returnStringGeoCode(geoCodeItem: GeoCodeItem): String {
-        println("awef return")
         return "${geoCodeItem.lat},${geoCodeItem.lng}"
     }
 }

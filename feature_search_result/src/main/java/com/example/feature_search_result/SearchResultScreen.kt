@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.common.location.rememberFusedLocationSource
 import com.example.presentation.viewmodel.SearchResultViewModel
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import kotlinx.coroutines.*
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -26,10 +27,11 @@ fun SearchResultScreen(searchPlaceWord: String = "속초") {
         if(isFinished) deactivate()
     }
 
-    LaunchedEffect(true) {
-        searchResultViewModel
-            .startFindingRouteAndLocation("강릉", currentLocationLatLng)
-    }
+    if(currentLocationLatLng != "")
+        searchResultViewModel.startFindingRouteAndLocation(
+            "속초",
+            currentLocationLatLng
+        )
 
 
     Box(modifier = Modifier.fillMaxSize()) {
