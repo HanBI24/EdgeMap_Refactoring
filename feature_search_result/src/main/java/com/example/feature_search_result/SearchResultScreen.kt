@@ -15,24 +15,24 @@ import kotlinx.coroutines.*
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
 fun SearchResultScreen(searchPlaceWord: String = "속초") {
-    var currentLocationLatLng by remember { mutableStateOf("") }
     var isFinished by remember { mutableStateOf(false) }
     val searchResultViewModel = hiltViewModel<SearchResultViewModel>()
+    val currentLocationLatLng = searchResultViewModel.curGeoCode.value
 
     rememberFusedLocationSource().apply {
         activate {
-            currentLocationLatLng = "${it?.latitude},${it?.longitude}"
+            searchResultViewModel.setCurGeoCode("${it?.latitude},${it?.longitude}")
             isFinished = true
         }
         if(isFinished) deactivate()
     }
 
-    if(currentLocationLatLng != "")
+    if(currentLocationLatLng != "") {
         searchResultViewModel.startFindingRouteAndLocation(
             "속초",
             currentLocationLatLng
         )
-
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Text(

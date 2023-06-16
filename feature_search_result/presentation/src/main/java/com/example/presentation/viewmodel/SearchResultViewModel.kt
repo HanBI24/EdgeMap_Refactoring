@@ -1,5 +1,7 @@
 package com.example.presentation.viewmodel
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.GeoCodeItem
@@ -15,23 +17,31 @@ class SearchResultViewModel @Inject constructor(
     private val getGeoCodeRepository: GetGeoCodeRepository
 ) : ViewModel() {
 
-    private lateinit var curGeoCode: String
-    private lateinit var goalGeoCode: String
+    private val _curGeoCode = mutableStateOf("")
+    val curGeoCode: State<String> = _curGeoCode
+
+    private val _goalGeoCode = mutableStateOf("")
+    val goalGeoCode: State<String> = _goalGeoCode
+
+    fun setCurGeoCode(curGeoCode: String) {
+        _curGeoCode.value = curGeoCode
+    }
 
     fun startFindingRouteAndLocation(
         searchPlaceWord: String,
         currentLocationLatLng: String
     ) {
-        curGeoCode = currentLocationLatLng
+        _curGeoCode.value = currentLocationLatLng
         getGoalGeoCode(searchPlaceWord)
     }
 
     private fun getGoalGeoCode(searchPlaceWord: String) {
         viewModelScope.launch {
-            goalGeoCode =
+            _goalGeoCode.value =
                 returnStringGeoCode(getGeoCodeRepository.getGeoCode(searchPlaceWord))
 
-            if(goalGeoCode.isNotBlank()) getRoute(curGeoCode, goalGeoCode)
+            if(_goalGeoCode.value.isNotBlank())
+                getRoute(_curGeoCode.value, _goalGeoCode.value)
         }
     }
 
