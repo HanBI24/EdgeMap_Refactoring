@@ -5,4 +5,6 @@ import com.example.domain.model.GeoCodeItem
 interface GetGeoCodeRepository {
 
     suspend fun getGeoCode(searchPlaceWord: String): GeoCodeItem
+
+    fun getCurLatLng(): String
 }
